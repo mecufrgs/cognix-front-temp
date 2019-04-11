@@ -1,0 +1,310 @@
+<mat-tab-group>
+    <mat-tab label="Passo 1" > 
+        <form>
+          <div style="text-align: center">
+              <br/>
+              <br/>
+                
+              <mat-form-field style="width: 50%;">
+                <input matInput [(ngModel)]="metadata.localizacao[0]" name="localizacao" placeholder="Localização">
+              </mat-form-field>
+              <br/>
+              <button mat-button  style="width: 50%;"> + Localização</button>
+              <br/> 
+            <h1>To do: Upload</h1>
+
+          </div>
+        </form>
+          
+
+
+
+
+
+    </mat-tab>
+    <mat-tab label="Passo 2"> 
+
+        <form>
+            <div style="text-align: center">
+                <br/>
+                <br/>
+                  
+                <mat-form-field style="width: 30%;">
+                  <input [(ngModel)]="metadata.titulo[0]" name="titulo" matInput placeholder="Título">
+                </mat-form-field> 
+                <button mat-button  style="width: 20%"> + Identificador</button> <br/> 
+                
+                <mat-form-field style="width: 30%;">
+                    <input matInput [(ngModel)]="metadata.idioma[0]" name="idioma" placeholder="Idioma">
+                </mat-form-field>                
+                <button mat-button  style="width: 20%;"> + Idioma</button>  <br/> 
+               
+                <mat-form-field style="width: 50%;">
+                    <textarea matInput [(ngModel)]="metadata.descricao[0]" name="descricao" placeholder="Descrição"> </textarea>
+                </mat-form-field> <br/>
+                <button mat-button  style="width: 50%;"> + Descrição</button>  <br/> 
+
+                <mat-form-field style="width: 30%;">
+                    <input matInput  [(ngModel)]="metadata.palavraChave[0]" name="palavraChave" placeholder="Palavra-chave">
+                </mat-form-field>                
+                <button mat-button  style="width: 20%;"> + Palavra-chave</button>  <br/> 
+               
+                <mat-form-field style="width: 30%;">
+                    <input matInput [(ngModel)]="metadata.cobertura[0]" name="cobertura"  placeholder="Cobertura">
+                </mat-form-field>                
+                <button mat-button  style="width: 20%;"> + Cobertura</button>  <br/> 
+               
+
+                <h1> Estrutura: </h1>
+                <mat-form-field style="width: 50%;">
+                    <mat-select placeholder="Estrutura"  [(ngModel)]="metadata.estrutura" name="estrutura">
+                      <mat-option value="Atômico"> Atômico </mat-option>
+                      <mat-option value="Coleção"> Coleção </mat-option>
+                      <mat-option value="Em Rede"> Em Rede</mat-option>
+                      <mat-option value="Hierárquico"> Hierárquico </mat-option>
+                      <mat-option value="Linear"> Linear </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                
+                <h1> Nível de agregação:</h1>
+                  <mat-radio-group style="font-size:15px;" [(ngModel)]="metadata.agregacao" name="agregacao">
+                      <mat-radio-button value="1">1</mat-radio-button>
+                      <mat-radio-button value="2">2</mat-radio-button>
+                      <mat-radio-button value="3">3</mat-radio-button>
+                      <mat-radio-button value="4">4</mat-radio-button>
+                      <mat-radio-button value="Não Informado">Não informado</mat-radio-button>
+                  </mat-radio-group>
+            </div>
+        </form>
+                  
+    
+    </mat-tab>
+        <mat-tab label="Passo 3"> 
+
+
+          <form>
+            <div style="text-align: center">
+                <mat-form-field style="width: 50%;">
+                    <input matInput placeholder="Versão" [(ngModel)]="metadata.versao" name="versao">
+                </mat-form-field>                
+
+                <h1> Estado: </h1>
+                <mat-form-field style="width: 50%;">
+                    <mat-select placeholder="Escolha seu Estado" [(ngModel)]="metadata.estado" name="estado">
+                      <mat-option value="Finalizado"> Finalizado </mat-option>
+                      <mat-option value="Indisponível"> Indisponível </mat-option>
+                      <mat-option value="Rascunho"> Rascunho</mat-option>
+                      <mat-option value="Revisado"> Revisado </mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+
+                <h1>Contribuinte:</h1>
+                <h1> Papel: </h1>
+                <mat-form-field style="width: 50%;">
+                    <mat-select placeholder="Papel" [(ngModel)]="metadata.papel" name="papel">
+                      <mat-option value="Autor"> Autor </mat-option>
+                      <mat-option value="Desconhecido"> Desconhecido </mat-option>
+                      <mat-option value="Designer Gráfico"> Designer Gráfico</mat-option>
+                      <mat-option value="Editor"> Editor </mat-option>
+                      <mat-option value="Eliminador"> Eliminador </mat-option>
+                      <mat-option value="Especialista na área"> Especialista na área </mat-option>
+                      <mat-option value="Iniciador"> Iniciador </mat-option>
+                      <mat-option value="Programador"> Programador </mat-option>
+                      <mat-option value="Publicador"> Publicador </mat-option>
+                      <mat-option value="Roteirista"> Roteirista </mat-option>
+                      <mat-option value="Validador"> Validador </mat-option>
+                      <mat-option value="Validador Educacional"> Validador Educacional </mat-option>
+                      <mat-option value="Validador Técnico"> Validador Técnico </mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <br/>
+
+
+                <mat-form-field style="width: 30%;">
+                    <input matInput placeholder="Entidade" [(ngModel)]="metadata.contribuinte[0].entidade[0]" name="entidade" >
+                </mat-form-field>                
+                <button mat-button  style="width: 20%;"> + Entidade</button>  <br/> 
+              
+                <mat-form-field style="width: 50%;">
+                    <input matInput placeholder="Data" [(ngModel)]="metadata.contribuinte[0].data" name="data">
+                </mat-form-field>                
+                <br>
+                <button mat-button  style="width: 50%;"> + Contribuinte</button>  <br/> 
+
+              </div>
+            </form>
+          </mat-tab>
+        <mat-tab label="Passo 4">
+
+          <form>
+            <div style="text-align: center">
+                <h1> Tem Custo: </h1>
+                <mat-radio-group [(ngModel)]="metadata.custo" name="custo" >
+                    <mat-radio-button value="Falso">Falso</mat-radio-button>
+                    <mat-radio-button value="Verdadeiro">Verdadeiro</mat-radio-button>
+                    <mat-radio-button value="Não Informado">Não Informado</mat-radio-button>
+                </mat-radio-group><br>
+
+                <h1> Tem declaração de direitos autorais: </h1>
+                <mat-radio-group [(ngModel)]="metadata.direitos" name="direitos" >
+                    <mat-radio-button value="Falso">Falso</mat-radio-button>
+                    <mat-radio-button value="Verdadeiro">Verdadeiro</mat-radio-button>
+                    <mat-radio-button value="Não Informado">Não Informado</mat-radio-button>
+                </mat-radio-group><br>
+                <br>
+                <mat-form-field style="width: 50%;">
+                    <textarea [(ngModel)]="metadata.condicoes" name="condicoes" matInput placeholder="Condições de uso"> </textarea>
+                </mat-form-field> <br/>
+              </div>
+          </form>
+        </mat-tab>
+        
+
+    <mat-tab label="Passo 5">
+      <form>
+
+        <div style="text-align: center">
+            <h1> Tipo de Interatividade: </h1>
+            <mat-form-field style="width: 50%;">
+                <mat-select [(ngModel)]="metadata.tipoInteratividade" name="tipoInteratividade" placeholder="Escolha seu tipo de interatividade">
+                  <mat-option value="Nenhum"> Nenhum </mat-option>
+                  <mat-option value="Ativa"> Ativa </mat-option>
+                  <mat-option value="Expositiva"> Expositiva</mat-option>
+                  <mat-option value="Mista"> Mista </mat-option>
+                </mat-select>
+            </mat-form-field><br>
+
+            <h1>Público alvo:</h1>
+            <mat-radio-group [(ngModel)]="metadata.publicoAlvo" name="publicoAlvo" >
+                <mat-radio-button value="Autor">Autor</mat-radio-button>
+                <mat-radio-button value="Estudante">Estudante</mat-radio-button>
+                <mat-radio-button value="Gestor">Gestor</mat-radio-button>
+                <mat-radio-button value="Professor">Professor</mat-radio-button>
+            </mat-radio-group><br>
+
+            <h1>Nivel de interatividade:</h1>
+            <mat-slider  [(ngModel)]="metadata.nivelInteratividade" name="nivelInteratividade" thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1" max="5"></mat-slider>
+      
+
+            <h1>Densidade semântica:</h1>
+            <mat-slider [(ngModel)]="metadata.densidadeSemantica" name="densidadeSemantica" thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1" max="5"></mat-slider>
+      
+            <h1>Nível de dificuldade</h1>
+            <mat-slider [(ngModel)]="metadata.nivelDificuldade" name="nivelDificuldade" thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1" max="5"></mat-slider>
+           
+            <h1>Intervalo de idade típico</h1>
+            <mat-slider [(ngModel)]="metadata.intervaloIdade" name="intervaloIdade" thumbLabel [displayWith]="formatLabel" tickInterval="1" min="1" max="5"></mat-slider> <br>
+      
+            <mat-form-field style="width: 50%;">
+                <input [(ngModel)]="metadata.tempoAprendizado" name="tempoAprendizado" matInput placeholder="Tempo típico de aprendizado"> 
+            </mat-form-field>                <br>
+          
+            <mat-form-field style="width: 50%;">
+                <textarea [(ngModel)]="metadata.descricaoEducacional" name="descricaoEducacional" matInput placeholder="Descrição"> </textarea>
+            </mat-form-field> <br/>    
+
+            <mat-form-field style="width: 30%;">
+                <input [(ngModel)]="metadata.idiomaEducacional" name="idiomaEducacional" matInput placeholder="Idioma">
+            </mat-form-field>    
+            <button mat-button  style="width: 20%;"> + Idioma</button>  <br/> 
+
+            <h1> Contexto:</h1>
+
+                <mat-checkbox>Ensino Superior</mat-checkbox>
+                <mat-checkbox> Escola </mat-checkbox>
+                <mat-checkbox> Outro </mat-checkbox>
+                <mat-checkbox> Treinamento</mat-checkbox>
+            
+            <h1> Tipo de interação </h1>
+            <mat-radio-group [(ngModel)]="metadata.tipoInteracao" name="tipoInteracao" >
+                <mat-radio-button value="Objeto ">Objeto </mat-radio-button>
+                <mat-radio-button value="Sujeito1 - Sujeito2 - Objeto">Sujeito1 - Sujeito2 - Objeto </mat-radio-button>
+                <mat-radio-button value="Não informado ">Não informado </mat-radio-button>
+            </mat-radio-group><br>
+
+            <h1> Percepção:  </h1>
+            <mat-form-field style="width: 50%;">
+                <mat-select placeholder="Percepção" [(ngModel)]="metadata.percepcao" name="percepcao">
+                  <mat-option value="Nenhum"> Autor </mat-option>
+                  <mat-option value="Auditiva"> Desconhecido </mat-option>
+                  <mat-option value="Mista"> Designer Gráfico</mat-option>
+                  <mat-option value="Outro"> Editor </mat-option>
+                  <mat-option value="Visual"> Eliminador </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+
+            <h1> Requer Sincronismo: </h1>
+            <mat-radio-group [(ngModel)]="metadata.sincronismo" name="sincronismo" >
+                <mat-radio-button value="Falso">Falso</mat-radio-button>
+                <mat-radio-button value="Verdadeiro">Verdadeiro</mat-radio-button>
+                <mat-radio-button value="Não Informado">Não Informado</mat-radio-button>
+            </mat-radio-group><br>
+
+
+            <h1> Requer Copresença: </h1>
+            <mat-radio-group [(ngModel)]="metadata.copresenca" name="copresenca" >
+                <mat-radio-button value="Falso">Falso</mat-radio-button>
+                <mat-radio-button value="Verdadeiro">Verdadeiro</mat-radio-button>
+                <mat-radio-button value="Não Informado">Não Informado</mat-radio-button>
+            </mat-radio-group><br>
+
+            <h1> Reciprocidade: </h1>
+            <mat-radio-group [(ngModel)]="metadata.reciprocidade" name="reciprocidade">
+                <mat-radio-button value="1-1">1-1</mat-radio-button>
+                <mat-radio-button value="1-n">1-n</mat-radio-button>
+                <mat-radio-button value=" n-m"> n-m</mat-radio-button>
+                <mat-radio-button value="Não Informado">Não Informado</mat-radio-button>
+            </mat-radio-group><br>
+
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab label="Passo 6"> 
+      <form>
+        <div style="text-align: center">
+          <h1> Acessibilidade - Descrição do recurso</h1> <br>
+
+          <h1> É Visual: </h1>
+          <mat-radio-group [(ngModel)]="metadata.visual" name="visual" >
+              <mat-radio-button value="Falso">Falso</mat-radio-button>
+              <mat-radio-button value="Verdadeiro">Verdadeiro</mat-radio-button>
+              <mat-radio-button value="Não Informado">Não Informado</mat-radio-button>
+          </mat-radio-group><br>
+
+          <h1> É Auditivo: </h1>
+          <mat-radio-group [(ngModel)]="metadata.auditivo" name="auditivo">
+              <mat-radio-button value="Falso">Falso</mat-radio-button>
+              <mat-radio-button value="Verdadeiro">Verdadeiro</mat-radio-button>
+              <mat-radio-button value="Não Informado">Não Informado</mat-radio-button>
+          </mat-radio-group><br>
+
+          <h1> É Textual: </h1>
+          <mat-radio-group [(ngModel)]="metadata.textual" name="textual">
+              <mat-radio-button value="Falso">Falso</mat-radio-button>
+              <mat-radio-button value="Verdadeiro">Verdadeiro</mat-radio-button>
+              <mat-radio-button value="Não Informado">Não Informado</mat-radio-button>
+          </mat-radio-group><br>
+
+          <h1> É Tátil: </h1>
+          <mat-radio-group [(ngModel)]="metadata.tatil" name="tatil">
+              <mat-radio-button value="Falso">Falso</mat-radio-button>
+              <mat-radio-button value="Verdadeiro">Verdadeiro</mat-radio-button>
+              <mat-radio-button value="Não Informado">Não Informado</mat-radio-button>
+          </mat-radio-group><br>
+
+        </div>
+      </form>
+    </mat-tab>
+    <mat-tab label="Passo 7"> <app-documents></app-documents></mat-tab>
+</mat-tab-group>
+
+
+
+<div id="entities-list">
+      <a title="salvar"  (click)="saveData()" class="iconAdd btn btn-default"
+         ><span class="glyphicon glyphicon-file"></span>
+        <span class='gliphycon-text'>Salvar</span>
+      </a>
+  </div>

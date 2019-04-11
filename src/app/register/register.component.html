@@ -1,0 +1,38 @@
+
+<div class="grey-division">
+    <div class="grey-division-text"><strong>Novo Cadastro</strong></div>
+</div>
+
+<div class="center-div">
+
+            <mat-form-field class="input-size">
+                <input matInput placeholder="Nome">
+            </mat-form-field> <br>
+
+            <mat-form-field class="input-size">
+                <input matInput placeholder="Sobrenome">
+            </mat-form-field><br>
+
+            <mat-form-field class="input-size">
+                <input matInput placeholder="E-mail">
+            </mat-form-field><br><br>
+
+            <div style="display: inline-block; width:30%">
+              <h6 style="text-align: left">Qual é a sua ocupação?</h6>
+            </div><br>
+
+            <mat-form-field style="width: 30%;">
+              <mat-select placeholder="Escolher">
+                <mat-option value=Aluno>Aluno</mat-option>
+                <mat-option value=Professor>Professor</mat-option>
+                <mat-option value=Gestor>Gestor</mat-option>
+              </mat-select>
+            </mat-form-field><br><br>
+            
+            <a [routerLink]="['/']" routerLinkActive="router-link-active" >
+            <div class="orange-button">
+              Finalizar
+            </div>
+          </a>
+
+</div>

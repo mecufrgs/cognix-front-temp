@@ -1,0 +1,19 @@
+
+  .card {
+    max-width: 20em;
+    height: 22em;
+  }
+  
+
+  .mat-card-image{
+    margin-bottom: 0px;
+  }
+
+  .card-footer{
+    font-size: 12px;
+    margin-left: 1em;
+  }
+
+  .mat-card-actions{
+    margin-bottom: 0.6em;
+  }

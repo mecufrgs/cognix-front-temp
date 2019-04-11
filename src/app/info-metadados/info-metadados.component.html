@@ -1,0 +1,49 @@
+
+
+<div class="tab-content">
+    <div id="entities-list" class="ui-widget" style="text-align: left" >
+        <h3>{{info.metadata.general.title}}</h3>
+
+        <h4>Informações Gerais</h4>
+        <ul>
+          <div *ngFor="let palavra of info.metadata.general.keywords">
+              <p> Palavra-chave: {{palavra}}</p>
+          </div>
+          <p> Descrição: {{info.metadata.general.descriptions}}</p>
+        </ul>
+
+        <h4>Identificador</h4>
+        <ul>
+            <p> Identificador: {{info.metadata.general.identifiers[0].entry}} </p>
+            <p> Estrutura: {{info.metadata.general.identifiers[0].catalog}} </p>
+
+        </ul>
+
+        <h4>Ciclo de Vida</h4>
+        <ul>
+            <p> Versão: {{info.isVersion}} </p>
+
+        </ul>
+
+        <h4>Contribuinte</h4>
+        <ul>
+            <p> Nome: Caio</p>
+            <p> Papel: Professor </p>
+            <p> Data: 11/04/2019 </p>
+        </ul>
+
+       
+
+        <h4>    Para quem foi feito?</h4>
+        <p>Estudante</p>
+        <h4>Tipo de acessibilidade:</h4>
+        <p>É visual</p>
+        <p>É textual</p>
+        <h4>Etapa de educação:</h4>
+        <p>Ensino médio</p>
+
+
+
+
+    </div>
+</div>

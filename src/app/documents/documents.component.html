@@ -1,0 +1,21 @@
+
+                  <mat-card class="card" > 
+                      
+                      <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu" style="height: 12em">
+                      
+                      
+                        <mat-card-actions>
+                            <h5 style="text-align: center"><strong>{{document.title}}</strong></h5>
+
+                        </mat-card-actions>
+                          <mat-card-footer style="text-align: left">
+                               <span class="card-footer theme-orange">
+                                   <a [routerLink]="['/documents/' + document.id]" routerLinkActive="router-link-active">
+                                       <strong>+ Informações</strong>
+                                    </a>    
+                                </span>
+                          </mat-card-footer>
+                    </mat-card>
+        
+
+              

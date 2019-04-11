@@ -1,0 +1,119 @@
+<mat-progress-bar class="orange-progress" value=14.2857142857></mat-progress-bar>
+
+<div class="center-div">
+  <p>Você pode adicionar  seu objeto através de um link ou de um arquivo em seu computador</p>
+<!--  <mat-form-field style="margin-top: 4em; width:70%">
+      <input matInput  placeholder="Endereço na Web (link)">
+  </mat-form-field>
+  <p style="text-align: left">Você também pode arrastar o objeto para essa janela</p>
+
+  <br>
+  <button matButton> Próximo</button>
+-->
+
+</div>
+
+<div class="center-div-step2">
+  <form>
+
+    <p>Qual é o título?</p>
+    <mat-form-field style="width:50%">
+        <input matInput matInput [(ngModel)]="OBAA.metadata.general.titles[0]" name="title" placeholder="Sua resposta">
+    </mat-form-field>
+    <br>
+    <p>Qual é o idioma?</p>
+    <mat-form-field>
+      <mat-select [(ngModel)]="OBAA.metadata.general.languages[0]" name="languages" placeholder="Escolher">
+        <mat-option value=Português>Português</mat-option>
+        <mat-option value=Inglês>Inglês</mat-option>
+        <mat-option value=Espanhol>Espanhol</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p>Como você descreveria este objeto de aprendizado?</p>
+    <mat-form-field style="width:50%">
+        <input matInput [(ngModel)]="OBAA.metadata.general.descriptions[0]" name="description" placeholder="Sua resposta">
+    </mat-form-field>
+    <br><br>
+
+    <p>Quais palavras-chave você usaria para descrever este objeto?</p>
+    <mat-form-field style="width:50%">
+        <input matInput  [(ngModel)]="OBAA.metadata.general.keywords[0]" name="keyword" placeholder="Sua resposta">
+    </mat-form-field>
+    <br><br>
+
+    <!-- <p>Quais destes tipos de recurso são os mais adequados para definir este objeto de aprendizagem?</p>
+    <mat-form-field style="width:50%">
+        <input matInput  placeholder="Sua resposta">
+    </mat-form-field>
+    <br><br> -->
+
+    <!-- <p>O usuário pode interagir  com este objeto?</p>
+    <mat-radio-group>
+        <mat-radio-button value="Sim">Sim</mat-radio-button><br>
+        <mat-radio-button value="Não">Não</mat-radio-button>
+    </mat-radio-group>
+    <button matButton> Próximo</button>
+    <br><br> -->
+
+
+    <!-- <p>Qual o nível dessa interação?</p>
+    CHECAR VALORES DO SLIDER<br><br> -->
+
+
+    <p>Quais correspondem ao objeto de aprendizagem em questão?</p>
+    <mat-checkbox>Visual</mat-checkbox><br>
+    <mat-checkbox>Auditivo</mat-checkbox><br>
+    <mat-checkbox>Textual</mat-checkbox><br>
+    <mat-checkbox>Tátil</mat-checkbox><br>
+
+    <!-- <button matButton> Próximo</button> -->
+
+    <p>Para quem foi feito este objeto de aprendizagem?</p>
+    <mat-checkbox>Estudante</mat-checkbox><br>
+    <mat-checkbox>Professor</mat-checkbox><br>
+    <mat-checkbox>Autor</mat-checkbox><br>
+    <mat-checkbox>Gestor</mat-checkbox><br>
+
+    <p>Para qual etapa da educação foi feito este projeto?</p>
+    <mat-checkbox>Educação infantil</mat-checkbox><br>
+    <mat-checkbox>Ensino fundamental - anos iniciais (1&ordm; ao 5&ordm;)</mat-checkbox><br>
+    <mat-checkbox>Ensino fundamental - anos finais (6&ordm; ao 9&ordm;)</mat-checkbox><br>
+    <mat-checkbox>Ensino médio</mat-checkbox><br>
+    <mat-checkbox>Ensino superior</mat-checkbox>
+
+    <!-- <button matButton> Próximo</button> -->
+
+    <h5 style="text-align:center">Contribuintes</h5>
+
+    <p>Quem contribuiu para o projeto?</p>
+    <mat-form-field style="width:50%">
+        <input matInput [(ngModel)]="OBAA.metadata.location" name="author" placeholder="Sua resposta">
+    </mat-form-field>
+    <br>
+
+    <p>De que forma?</p>
+    <mat-form-field>
+      <mat-select [(ngModel)]="OBAA.metadata.supportedPlatforms" name="role" placeholder="Escolher">
+        <mat-option value=Aluno>Aluno</mat-option>
+        <mat-option value=Professor>Professor</mat-option>
+        <mat-option value=Gestor>Gestor</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <p>Adicione uma capa para seu objeto:</p>
+    <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+
+    <button type="button" class="btn btn-success btn-s" 
+      (click)="uploader.uploadAll()" 
+      [disabled]="!uploader.getNotUploadedItems().length" >
+          Upload an Image
+    </button>
+    <br><br>
+    
+    <button matButton (click)="finish()"> Encerrar</button>
+  </form>
+</div>
+
+
+
