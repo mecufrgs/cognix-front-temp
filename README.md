@@ -2,6 +2,30 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
+# Setup
+
+1 - install Node
+
+sudo apt-get install curl python-software-properties
+curl -sL https://deb.nodesource.com/setup_11.x | sudo -E bash -
+sudo apt-get install nodejs
+
+2 - install angular 
+
+npm install -g @angular/cli
+
+3 - install all dependencies (If you have angular and node already, start from here)
+
+npm install
+
+4 - Setup hosts file:
+
+edit etc/hosts so that the cognix backend had the alias "cognixBack"
+
+5 - Run
+
+ng serve
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
