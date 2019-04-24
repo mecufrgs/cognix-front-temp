@@ -6,27 +6,20 @@
             <div class="search-box center-div">
                 <form >
                     
-                        <mat-form-field class="search-bar">
-                                <input  matInput  placeholder="Pesquisar">
-                        </mat-form-field>
-
+                        <a [routerLink]="['/search']" routerLinkActive="router-link-active" ><button> Pesquisar</button> </a>
                 </form>
             </div>
             <div>
-                <div class="center-div">
+                <!-- <div class="center-div">
                     <mat-chip-list >
                             <mat-chip class="search-options"> <span class="chip-text">pesquisa avançada</span></mat-chip>
                             <mat-chip class="search-options"><span class="chip-text">área de conhecimento</span></mat-chip>
                             <mat-chip class="search-options"><span class="chip-text">tipo de Recurso</span></mat-chip>
                             <mat-chip class="search-options"><span class="chip-text">idioma</span></mat-chip>
                     </mat-chip-list>
-                </div>  
+                </div>   -->
             </div>
-            <a  [routerLink]="['/register']" routerLinkActive="router-link-active" >
-                <div class="register">
-                    <span >FAÇA SEU CADASTRO</span>
-                </div>
-            </a>
+
 
         </div> 
     </div>

@@ -1,0 +1,105 @@
+.main-image-div{
+    background-image:  url('../../assets/images/degrade.jpg');
+    
+    height: 25em;
+    
+}
+
+
+.image-text{
+    padding-top: 3em;
+    font-size: small;
+    color:black;
+}
+
+.inside-image{
+    text-align: center;
+}
+
+.search-bar{
+    width:22em;
+    margin-top: 1em;
+    color:white;
+}
+
+.search-box{
+    background-color: #FDFDFD;
+    width: 25em;
+    height: 3em;
+    line-height: 2em;
+    border-radius: 2em;
+    font-size: 1.5em;
+    display: block;
+    margin-top:1em;
+    margin-bottom: 0.5em;
+
+}
+
+
+.mat-form-field{
+    margin:0px 0px;
+}
+
+.center-div{
+    display: inline-block;
+}
+
+.search-buttons{
+    margin-left:15em;
+    margin-top: 4em;
+}
+
+.search-title{
+    margin-right: 3em;
+}
+
+.search-options{
+    height:1.3em;
+}
+
+.chip-text{
+    font-size:0.6em;
+}
+
+.register{
+    margin-top: 20em;
+    margin-right: 2em;
+    float:right;
+    background-color: #FF6F00;
+    color: white;
+    width: 12em;
+    height: 2em;
+    line-height: 2em;
+    border-radius: 0.6em;
+    font-size: 1.5em;
+    display: block;
+
+}
+
+
+.grey-division{
+    width: 100%;
+    height: 35em;
+    background-color: #e6e6e6;
+    text-align: center;
+}
+
+.grey-division-text{
+    margin-left: 4.3em;
+    padding-top: 2.7em;
+    font-size: 14px;
+    text-align: left;
+}
+
+.all-text{
+    padding-top: 2.7em;
+    font-size: 14px;
+    text-align: left;
+}
+
+.favorites{
+    width:80%;
+    margin-top: 2em;
+    display:inline-block;
+}
+

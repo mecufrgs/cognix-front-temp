@@ -101,16 +101,24 @@
       </mat-select>
     </mat-form-field>
 
+    <p>Adicione formato OBAA:</p>
+    <div>
+        <mat-chip-list>
+          <mat-chip class="search-options" #chip="matChip"  [selectable]=false *ngFor="let field of searchOptions.fields; let i = index" [attr.data-index]="i" (click)="onSelect(i, field); chip.select();">       
+            <span class="chip-text">{{field}}</span></mat-chip>
+        </mat-chip-list>
+      </div> <br> <br>
+    
     <p>Adicione uma capa para seu objeto:</p>
     <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-
+    <br>
     <button type="button" class="btn btn-success btn-s" 
       (click)="uploader.uploadAll()" 
       [disabled]="!uploader.getNotUploadedItems().length" >
-          Upload an Image
+          Upload
     </button>
-    <br><br>
-    
+    <br><br><br><br>
+
     <button matButton (click)="finish()"> Encerrar</button>
   </form>
 </div>

@@ -8,6 +8,7 @@ import { AboutComponent } from "../about/about.component"
 import { RegisterComponent } from '../register/register.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { NewDocumentFastComponent } from '../new-document-fast/new-document-fast.component';
+import { SearchComponent } from '../search/search.component';
 
 const routes: Routes = [
   {
@@ -28,6 +29,9 @@ const routes: Routes = [
   }, {
     path: 'documents/:id',
     component: InfoMetadadosComponent
+  },{
+    path: 'search',
+    component: SearchComponent
   },{
     path: '**',
     component: LoggedComponent

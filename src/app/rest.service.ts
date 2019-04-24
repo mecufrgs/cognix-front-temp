@@ -5,6 +5,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 
 
 const endpoint = 'http://cognixBack:8080';
+const endpointSOLR = 'http://cognixBack:8983';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -39,12 +40,38 @@ export class RestService {
     );
   }
 
+  addDocumentSOLR (product): Observable<any> {
+    console.log("Lets add to solr");
+    console.log(product);
+    return this.http.post<any>(endpointSOLR + '/solr/DocumentTinyDto/update?_=1556107084591&commitWithin=1000&overwrite=true&wt=json', product, httpOptions).pipe(
+      tap((product) => console.log("addProduct")),
+      catchError(this.handleError<any>('addProduct'))
+    );
+  }
+
+  querySOLR(id): Observable<any> {
+    console.log("Lets begin");
+    return this.http.get(endpointSOLR + '/solr/DocumentTinyDto/select?' + id, httpOptions).pipe(
+      tap((product) => console.log("SolrQuery")),
+      catchError(this.handleError<any>('SolrQuery'))
+    );
+  }
 
   getDocument (): Observable<any> {
     console.log("Lets begin");
     return this.http.get(endpoint + '/documents/' , httpOptions).pipe(
       tap((product) => console.log("getDocument")),
       catchError(this.handleError<any>('getDocument'))
+    );
+  }
+
+
+
+  getThumbnail (id:string): Observable<any> {
+    console.log("Lets begin thumbnail");
+    return this.http.get(endpoint + '/files/' + id + '/thumbnail', httpOptions).pipe(
+      tap((product) => console.log("getThumbnail done")),
+      catchError(this.handleError<any>('getThumbnail'))
     );
   }
 

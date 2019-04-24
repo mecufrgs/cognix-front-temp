@@ -26,7 +26,10 @@ export class HomeComponent implements OnInit {
       console.log(this.documents);
     });
       
-    
+    this.rest.getThumbnail('1').subscribe((data: {}) => {
+      this.documents = data;
+      console.log(this.documents);
+    });
 
   }
 

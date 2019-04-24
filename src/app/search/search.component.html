@@ -1,0 +1,78 @@
+<div class="main-image-div">
+  <div class="inside-image">
+    <div class="image-text editable"> Pesquisa avançada</div>
+    <div class="search-box center-div">
+      <form>
+
+        <mat-form-field class="search-bar">
+          <input matInput placeholder="Pesquisar">
+        </mat-form-field>
+        
+
+      </form> 
+      <button><a (click)="search()"> Pesquisar</a> </button>
+    </div>
+    <div>
+      <div class="search-buttons">
+        <div style="float:left;" class="search-title search-options">
+          <mat-chip-list>
+            <mat-chip selected class="search-options"><span class="chip-text">{{currentOption}}</span></mat-chip>
+          </mat-chip-list>
+        </div>
+        <div style="float:left;">
+          <mat-chip-list>
+            <mat-chip class="search-options" #chip="matChip"  [selectable]=false *ngFor="let field of searchOptions.fields; let i = index" [attr.data-index]="i" (click)="onSelect(i, field); chip.select();">       
+              <span class="chip-text">{{field}}</span></mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+    </div>
+    <a [routerLink]="['/register']" routerLinkActive="router-link-active">
+      <div class="register">
+        <span>FAÇA SEU CADASTRO</span>
+      </div>
+    </a>
+
+  </div>
+</div>
+
+<!-- <div class="grey-division">
+          <div class="grey-division-text"><strong>Seus Favoritos</strong></div>
+          <div class="favorites">
+              
+              <mat-grid-list cols=3 rowHeight=1:1.1 gutterSize=2em >
+
+
+                  <mat-grid-tile >
+                      <app-documents></app-documents>
+                  </mat-grid-tile>
+
+                  <mat-grid-tile>
+                      <app-documents></app-documents>
+                  </mat-grid-tile>
+
+                  <mat-grid-tile>
+                      <app-documents></app-documents>
+                  </mat-grid-tile>
+
+              </mat-grid-list>
+          
+          </div>
+      </div>
+       -->
+
+<div class="grey-division-text"><strong>Todos</strong></div>
+
+
+<div style="margin-left: 6em; margin-top: 4em; width:90%">
+  <mat-grid-list cols=4 rowHeight=23em>
+
+    <mat-grid-tile *ngFor="let document of documents">
+
+      <app-documents [document]="document"></app-documents>
+    </mat-grid-tile>
+
+
+  </mat-grid-list>
+
+</div>

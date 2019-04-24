@@ -34,6 +34,7 @@ import { NewDocumentFastComponent } from './new-document-fast/new-document-fast.
 import { HttpClientModule } from '@angular/common/http';
 
 import { FileSelectDirective } from 'ng2-file-upload';
+import { SearchComponent } from './search/search.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { FileSelectDirective } from 'ng2-file-upload';
     RegisterComponent,
     ProfileComponent,
     NewDocumentFastComponent,
-    FileSelectDirective    
+    FileSelectDirective,
+    SearchComponent    
   ],
   imports: [
     BrowserModule,
