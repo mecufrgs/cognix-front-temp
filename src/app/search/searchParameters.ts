@@ -1,21 +1,62 @@
 export const parameters = {
-    fields: ["linguagens", "matemática", "ciências da natureza", "ciências humanas", "ensino religioso"],
-    params: [{},{},
-            {
-                fields: ["primeiro ano", "segundo ano", "terceiro ano", "quarto ano", "quinto ano"],  
-                params: [
-                    {
-                        fields: ["matéria e energia", "vida e evolução", "Terra e universo"],
-                        params: [{},
-                            {
-                                fields: ["corpo humano", "respeito a diversidade"]
-                            }
-                        ]
-                    }
-                ]
-            }
+    name:"área de conhecimento",
+    next: [
 
+        {
+            name:"linguagens"
+        },
+        {
+            name:"matemática"
+        },
+        {
+            name:"ciências da natureza",
+            next: [
+                {
+                    name:"primeiro ano",
+                    next: [
+                        {
+                            name:"matéria e energia"
+                        },
+                        {
+                            name:"vida e evolução",
+                            next: [
+                                {
+                                    name:"corpo humano"
+                                },
+                                {
+                                    name:"respeito a diversidade"
+                                },
+
+                            ]
+                        },
+                        {
+                            name:"Terra e universo"
+                        },
+                    ]
+                },
+                {
+                    name:"segundo ano"
+                },
+                {
+                    name:"terceiro ano"
+                },
+                {
+                    name:"quarto ano"
+                },
+                {
+                    name:"quinto ano"
+                },
+            ]
+        },
+        {
+            name:"ciências humanas"
+        },
+        {
+            name:"ensino religioso"
+        }
 
     ]
+
+
 
 }

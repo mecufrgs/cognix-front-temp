@@ -23,7 +23,10 @@ export class InfoMetadadosComponent implements OnInit {
     this.rest.getDocumentFromID(this.id).subscribe((data: {}) => {
       Object.assign(this.info,data);
       console.log(this.info);
+      console.log(this.info.metadata.general.coverages)
     });
+
+
   }
 
 

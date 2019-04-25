@@ -62,25 +62,21 @@
 
 
     <p>Quais correspondem ao objeto de aprendizagem em questão?</p>
-    <mat-checkbox>Visual</mat-checkbox><br>
-    <mat-checkbox>Auditivo</mat-checkbox><br>
-    <mat-checkbox>Textual</mat-checkbox><br>
-    <mat-checkbox>Tátil</mat-checkbox><br>
+    <div *ngFor="let item of kind">
+    <mat-checkbox (change)="item.isValid = ! item.isValid">{{item.name}}</mat-checkbox><br>
+  </div>
 
     <!-- <button matButton> Próximo</button> -->
 
     <p>Para quem foi feito este objeto de aprendizagem?</p>
-    <mat-checkbox>Estudante</mat-checkbox><br>
-    <mat-checkbox>Professor</mat-checkbox><br>
-    <mat-checkbox>Autor</mat-checkbox><br>
-    <mat-checkbox>Gestor</mat-checkbox><br>
+    <div *ngFor="let item of target">
+      <mat-checkbox (change)="item.isValid = ! item.isValid">{{item.name}}</mat-checkbox><br>
+    </div>
 
     <p>Para qual etapa da educação foi feito este projeto?</p>
-    <mat-checkbox>Educação infantil</mat-checkbox><br>
-    <mat-checkbox>Ensino fundamental - anos iniciais (1&ordm; ao 5&ordm;)</mat-checkbox><br>
-    <mat-checkbox>Ensino fundamental - anos finais (6&ordm; ao 9&ordm;)</mat-checkbox><br>
-    <mat-checkbox>Ensino médio</mat-checkbox><br>
-    <mat-checkbox>Ensino superior</mat-checkbox>
+    <div *ngFor="let item of age">
+      <mat-checkbox (change)="item.isValid = ! item.isValid">{{item.name}}</mat-checkbox><br>
+    </div>
 
     <!-- <button matButton> Próximo</button> -->
 
@@ -102,15 +98,28 @@
     </mat-form-field>
 
     <p>Adicione formato OBAA:</p>
-    <div>
-        <mat-chip-list>
-          <mat-chip class="search-options" #chip="matChip"  [selectable]=false *ngFor="let field of searchOptions.fields; let i = index" [attr.data-index]="i" (click)="onSelect(i, field); chip.select();">       
-            <span class="chip-text">{{field}}</span></mat-chip>
-        </mat-chip-list>
-      </div> <br> <br>
+    
+      <div>
+        <div class="search-buttons">
+          <div style="float:left;" class="search-title search-options">
+            <mat-chip-list>
+              <mat-chip selected class="search-options" (click)="onSelectPrevious()"><span
+                  class="chip-text">{{searchOptions.name}}</span></mat-chip>
+            </mat-chip-list>
+          </div>
+          <div style="float:left;">
+            <mat-chip-list>
+              <mat-chip class="search-options" #chip="matChip" [selectable]=false
+                *ngFor="let field of searchOptions.next; let i = index" [attr.data-index]="i"
+                (click)="onSelect(i, field.name); chip.select();">
+                <span class="chip-text">{{field.name}}</span></mat-chip>
+            </mat-chip-list>
+          </div>
+        </div>
+      </div> <br> <br><br> <br><br> <br>
     
     <p>Adicione uma capa para seu objeto:</p>
-    <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+    <input type="file" name="photo" id="test" ng2FileSelect [uploader]="uploader" />
     <br>
     <button type="button" class="btn btn-success btn-s" 
       (click)="uploader.uploadAll()" 

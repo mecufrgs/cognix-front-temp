@@ -5,7 +5,7 @@
       <form>
 
         <mat-form-field class="search-bar">
-          <input matInput placeholder="Pesquisar">
+          <input matInput [(ngModel)]="searchText" name="searchTexts" placeholder="Pesquisa avançada">
         </mat-form-field>
         
 
@@ -16,22 +16,18 @@
       <div class="search-buttons">
         <div style="float:left;" class="search-title search-options">
           <mat-chip-list>
-            <mat-chip selected class="search-options"><span class="chip-text">{{currentOption}}</span></mat-chip>
+            <mat-chip selected class="search-options" (click)="onSelectPrevious()"><span class="chip-text">{{searchOptions.name}}</span></mat-chip>
           </mat-chip-list>
         </div>
         <div style="float:left;">
           <mat-chip-list>
-            <mat-chip class="search-options" #chip="matChip"  [selectable]=false *ngFor="let field of searchOptions.fields; let i = index" [attr.data-index]="i" (click)="onSelect(i, field); chip.select();">       
-              <span class="chip-text">{{field}}</span></mat-chip>
+            <mat-chip class="search-options" #chip="matChip"  [selectable]=false *ngFor="let field of searchOptions.next; let i = index" [attr.data-index]="i" (click)="onSelect(i, field.name); chip.select();">       
+              <span class="chip-text">{{field.name}}</span></mat-chip>
           </mat-chip-list>
         </div>
       </div>
     </div>
-    <a [routerLink]="['/register']" routerLinkActive="router-link-active">
-      <div class="register">
-        <span>FAÇA SEU CADASTRO</span>
-      </div>
-    </a>
+
 
   </div>
 </div>

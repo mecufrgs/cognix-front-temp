@@ -9,10 +9,12 @@ import { RestService } from '../rest.service'
 })
 export class SearchComponent implements OnInit {
   searchOptions: any;
-  currentOption: string;
-  printedOptions: string[];
   finalSearch: string;
+  finalparam: string;
   finished:boolean;
+  depth:number;
+  path:number[];
+  searchText:any;
 
   private documents: object;
 
@@ -22,35 +24,75 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.searchOptions = Object.assign({}, parameters);
-    this.currentOption = "área do conhecimento";
-    this.finalSearch = "OBAA"; 
+    this.finalSearch = "área do conhecimento"; 
     this.finished = false;
+    this.depth = 0;
+    this.path = [];
+    
   }
 
   onSelect(index:number, selected:string){
     
-    if(!this.finished){
+    if (this.finished) {
+      this.finalSearch = this.finalSearch.substring(0, this.finalSearch.length - this.finalparam.length - 1);  
+    }
+    
+    this.finalparam = selected;
 
+    if(this.searchOptions.next[index].hasOwnProperty("next")){
+
+
+
+      this.finalSearch += "-" + selected;
+      this.searchOptions = this.searchOptions.next[index];
+      this.depth++;
+      this.path.push(index);
       
-
-      this.finalSearch += "."+ selected;
-        
-      if(this.searchOptions.hasOwnProperty("params")){
-        this.searchOptions = this.searchOptions.params[index];
-        this.currentOption = selected;
-      } else this.finished = true;
-        
-        
+      this.finished = false;
       
 
     }
-    //Todo: End result must be changeable.
+    else{
+      this.finalSearch += "-"+ selected;
+      this.finished = true;
+      console.log(this.depth);
+    }
+
+    console.log(this.finalSearch);
+
+  }
+
+  onSelectPrevious(){
+    if(this.depth > 0){
+
+      
+      var x:any = Object.assign({}, parameters);
+      this.finalSearch ="área do conhecimento";
+
+
+      this.depth--;
+      for(var i = 0; i < this.depth; i++){
+        x = x.next[this.path[i]];
+        this.finalSearch += "-" + x.name;
+        
+      }
+      this.path.pop();
+      this.searchOptions = x; 
+      
+      
+      
+      
+      this.finalparam = this.searchOptions.name;
+      this.finished = false;
+    }
 
 
   }
 
   search(){
-    var finalString = "q=keywords:" + this.finalSearch + "*";
+    console.log(this.searchText);
+
+    var finalString = "q=title:\""+ this.searchText + "\" AND keywords:\"" + this.finalSearch + "\"";
     this.rest.querySOLR(finalString).subscribe((data: any) => {
       this.documents = data.response.docs;
       console.log(this.documents);

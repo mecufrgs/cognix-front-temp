@@ -28,19 +28,16 @@
         <h4>Contribuinte</h4>
         <ul>
             <p> Nome: Caio</p>
-            <p> Papel: Professor </p>
-            <p> Data: 11/04/2019 </p>
         </ul>
 
        
 
         <h4>    Para quem foi feito?</h4>
-        <p>Estudante</p>
+        <ul *ngFor="let item of info.metadata.technical.formats"><p>{{item}}</p></ul>
         <h4>Tipo de acessibilidade:</h4>
-        <p>É visual</p>
-        <p>É textual</p>
+        <ul *ngFor="let item of info.metadata.general.coverages"><p>É {{item}}</p></ul>
         <h4>Etapa de educação:</h4>
-        <p>Ensino médio</p>
+        <ul *ngFor="let item of info.metadata.technical.supportedPlatforms"><p>{{item}}</p></ul>
 
 
 
