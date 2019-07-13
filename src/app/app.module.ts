@@ -15,7 +15,9 @@ import { FormsModule } from '@angular/forms';
 import {MatProgressBarModule} from '@angular/material/progress-bar'; 
 import {MatPaginatorModule} from '@angular/material/paginator';
 
-import {MatButtonModule, MatCheckboxModule, MatTabsModule, } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatTabsModule } from '@angular/material/tabs';
 import {MatChipsModule} from '@angular/material/chips'; 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
