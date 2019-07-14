@@ -13,10 +13,12 @@
   }
 
   .link-spacing{
-      margin-top: 1%;
+      margin-top: 2%;
       margin-left: 2.5%;
   }
   
   .link-text{
       color:black;
+      font-size: 18px;
   }
+  

@@ -94,7 +94,6 @@ label {font-weight: bold;}
 body, html {height: 100%;}
 body {
     font: 100% 'Roboto';
-    width: 900px;
     margin: auto auto;    
     text-align: left;
     /*background-color: #44697D;*/
@@ -397,6 +396,7 @@ input[disabled]{color:#777}
 
 .theme-orange{
     color: #FFA040;
+    
 }
 
 .theme-blue{

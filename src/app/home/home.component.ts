@@ -11,16 +11,18 @@ import { RestService } from '../rest.service';
 export class HomeComponent implements OnInit {
 
   constructor(public rest:RestService) { 
-
+    this.isLogged = false;
     
   }
     private Login: LoginService;
     private isLogged: boolean;
     private documents: object;
+
   ngOnInit() {
 
   // To do - Make call to back end
-    this.isLogged = true;
+    this.isLogged = false;
+
     this.rest.getDocument().subscribe((data: {}) => {
       this.documents = data;
       console.log(this.documents);
@@ -32,6 +34,8 @@ export class HomeComponent implements OnInit {
     });
 
   }
+
+
 
 }
 

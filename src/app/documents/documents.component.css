@@ -1,17 +1,23 @@
 
   .card {
-    max-width: 20em;
-    height: 22em;
+    width: 13.5em;
+    height: 13.5em;
   }
   
 
   .mat-card-image{
     margin-bottom: 0px;
+    object-fit: cover;
+    width:13.5em;
+    height:8.5em;
   }
 
-  .card-footer{
-    font-size: 12px;
-    margin-left: 1em;
+  .card-footers{
+    font-size: 16px;
+    margin-left: 0.7em;
+    margin-bottom: 0px;
+    color: #FFA040;
+    margin-right: 6.2em;
   }
 
   .mat-card-actions{

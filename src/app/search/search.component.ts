@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { parameters } from './searchParameters'
-import { restoreBindingIndex } from '@angular/core/src/render3/instructions';
 import { RestService } from '../rest.service'
 @Component({
   selector: 'app-search',

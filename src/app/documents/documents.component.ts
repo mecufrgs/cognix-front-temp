@@ -12,11 +12,6 @@ import { MatIconRegistry } from '@angular/material/icon';
 export class DocumentsComponent implements OnInit {
 @Input() document: object;
 
-  constructor(iconRegistry: MatIconRegistry, sanitizer: DomSanitizer) {
-    iconRegistry.addSvgIcon(
-        'favorite',
-        sanitizer.bypassSecurityTrustResourceUrl('/assets/icons/favorite.svg'));
-  }
   
 
   isLogged: boolean;

@@ -2,12 +2,18 @@
     background-image:  url('../../assets/images/main.jpg');
     
     height: 50em;
-    
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    width: 100%;
 }
 
 .image-text{
-    padding-top: 3em;
-    font-size: small;
+    padding-top: 2.5em;
+    font-size: x-large;
+    color:#E3E3E3;
 }
 
 .inside-image{
@@ -15,7 +21,7 @@
 }
 
 .search-bar{
-    width:22em;
+    width:15em;
     margin-top: 1em;
     color:white;
 }
@@ -51,8 +57,8 @@
 }
 
 .register{
-    margin-top: 20em;
-    margin-right: 2em;
+    margin-top: 22em;
+    margin-right: 3em;
     float:right;
     background-color: #FF6F00;
     color: white;
@@ -74,10 +80,24 @@
 }
 
 .grey-division-text{
-    margin-left: 4.3em;
-    padding-top: 2.7em;
-    font-size: 14px;
+    margin-left: 5.6em;
+    padding-top: 3.3em;
+    font-size: 1.2em;
     text-align: left;
+    color:black;
+}
+
+.grey-division-text-unlogged{
+    text-align: center;
+    margin-top: 2.5em; 
+    font-size: x-large
+
+}
+
+.center-paragraph{
+    margin-left:17%;
+    margin-right: 17%;
+
 }
 
 .all-text{
@@ -88,7 +108,7 @@
 
 .favorites{
     width:80%;
-    margin-top: 2em;
+    margin-top: 1.5em;
     display:inline-block;
 }
 

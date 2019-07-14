@@ -7,11 +7,12 @@ import { FooterComponent } from './footer/footer.component';
 import { AppRoutingModule } from '../app-routing/app-routing.module';
 import {MatMenuModule} from '@angular/material/menu';
 import { RouterModule } from '@angular/router';
+import {MatIconModule} from '@angular/material/icon'; 
 
 
 @NgModule({
   imports: [
-    CommonModule, MatMenuModule,AppRoutingModule, RouterModule
+    CommonModule, MatMenuModule,AppRoutingModule, RouterModule, MatIconModule
   ],
   declarations: [LayoutComponent, HeaderComponent, FooterComponent],
   exports: [LayoutComponent]

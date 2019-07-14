@@ -9,6 +9,9 @@
                         <a [routerLink]="['/search']" routerLinkActive="router-link-active" ><button> Pesquisar</button> </a>
                 </form>
             </div>
+
+            <a [routerLink]="['/register']" class="register">FAÇA SEU CADASTRO</a>
+
             <div>
                 <!-- <div class="center-div">
                     <mat-chip-list >
@@ -24,36 +27,51 @@
         </div> 
     </div>
 
-    <!-- <div class="grey-division">
-            <div class="grey-division-text"><strong>Seus Favoritos</strong></div>
-            <div class="favorites">
-                
-                <mat-grid-list cols=3 rowHeight=1:1.1 gutterSize=2em >
-
-
-                    <mat-grid-tile >
-                        <app-documents></app-documents>
-                    </mat-grid-tile>
-
-                    <mat-grid-tile>
-                        <app-documents></app-documents>
-                    </mat-grid-tile>
-
-                    <mat-grid-tile>
-                        <app-documents></app-documents>
-                    </mat-grid-tile>
-
-                </mat-grid-list>
+    <div *ngIf="isLogged; else unlogged" class="grey-division">
+        <div class="grey-division-text"><strong>SEUS FAVORITOS</strong></div>
+        
+        
+        <div  class="favorites">
             
-            </div>
-        </div>
-         -->
-    
-    <div class="grey-division-text"><strong>Todos</strong></div>
+            <mat-grid-list cols=3 rowHeight=1:1.1 gutterSize=2em >
 
-      
-    <div style="margin-left: 6em; margin-top: 4em; width:90%" >
-        <mat-grid-list cols=4 rowHeight=23em>
+                
+                <mat-grid-tile >
+                    <app-documents></app-documents>
+                </mat-grid-tile>
+                
+                <mat-grid-tile>
+                    <app-documents></app-documents>
+                </mat-grid-tile>
+                
+                <mat-grid-tile>
+                    <app-documents></app-documents>
+                </mat-grid-tile>
+                
+            </mat-grid-list>
+            
+        </div>
+        
+        
+        
+    </div>
+    <ng-template #unlogged>
+
+        <div class="grey-division" style="height: 22em">
+            <div class="grey-division-text">SEUS FAVORITOS</div>
+            <div class="grey-division-text-unlogged theme-blue"><strong>Entre</strong> ou <strong>cadastre-se</strong> para começar<br> a criar sua lista de objetos de aprendizagem favoritos!</div>
+    
+        </div>    
+
+    </ng-template>
+    
+
+
+    <div class="grey-division-text"><strong>TODOS</strong></div>
+    
+    
+    <div style="margin-left: 4em; font-size:1.5em; margin-top: 1.5em; width:90%" >
+            <mat-grid-list cols=4 rowHeight=15em>
 
             <mat-grid-tile *ngFor="let document of documents">
                 

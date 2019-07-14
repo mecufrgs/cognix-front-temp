@@ -1,20 +1,19 @@
 
                   <mat-card class="card" > 
                       
-                      <img mat-card-image src="http://cognixback:8080/files/1/thumbnail" alt="Photo of a Shiba Inu" style="height: 12em">
+                      <img mat-card-image class="mat-card-image" src="http://cognixback:8080/files/1/thumbnail" alt="Photo of a Shiba Inu">
                       
                       
                         <mat-card-actions>
                             <h5 style="text-align: center"><strong>{{document.title}}</strong></h5>
 
                         </mat-card-actions>
-                          <mat-card-footer style="text-align: left">
-                               <span class="card-footer theme-orange">
-                                   <a [routerLink]="['/documents/' + document.id]" routerLinkActive="router-link-active">
-                                       <strong>+ Informações</strong>
-                                    </a>    
-                                </span>
-                          </mat-card-footer>
+                        
+                            <a class="card-footers theme-orange" [routerLink]="['/documents/' + document.id]" routerLinkActive="router-link-active">
+                                <strong>+ Informações</strong>
+                             </a> 
+                             <button mat-button > <mat-icon aria-hidden="false" aria-label="favorite" >favorite_border</mat-icon>
+                             </button>
                     </mat-card>
         
 
