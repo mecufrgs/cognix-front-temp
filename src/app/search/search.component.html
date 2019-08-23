@@ -2,28 +2,43 @@
   <div class="inside-image">
     <div class="image-text editable"> Pesquisa avançada</div>
     <div class="search-box center-div">
-      <form>
 
-        <mat-form-field class="search-bar">
-          <input matInput [(ngModel)]="searchText" name="searchTexts" placeholder="Pesquisa avançada">
+      <span>
+        <mat-form-field floatLabel="never" class="search-bar">
+          <input matInput [(ngModel)]="searchText" name="searchTexts" placeholder="Pesquisar objetos de aprendizagem">
+
         </mat-form-field>
-        
+      </span>
 
-      </form> 
-      <button><a (click)="search()"> Pesquisar</a> </button>
+      <a style="cursor:pointer" (click)="search()">
+        <div class="dot">
+
+          <mat-icon style="color:white; margin-right:0.5em; margin-top:0.2em; font-size: 2em" aria-hidden="false"
+            aria-label="search">search</mat-icon>
+
+
+        </div>
+      </a>
+
     </div>
+
+
     <div>
       <div class="search-buttons">
-        <div style="float:left;" class="search-title search-options">
+        <div style="float:left;" class="search-title">
           <mat-chip-list>
-            <mat-chip selected class="search-options" (click)="onSelectPrevious()"><span class="chip-text">{{searchOptions.name}}</span></mat-chip>
+            <mat-chip selected class="search-options" (click)="onSelectPrevious()"><span
+                class="chip-text">{{searchOptions.name}}</span></mat-chip>
           </mat-chip-list>
         </div>
-        <div style="float:left;">
+        <div style="float:left; width:70%">
           <mat-chip-list>
-            <mat-chip class="search-options" #chip="matChip"  [selectable]=false *ngFor="let field of searchOptions.next; let i = index" [attr.data-index]="i" (click)="onSelect(i, field.name); chip.select();">       
+            <mat-chip class="search-options" #chip="matChip" [selectable]=false
+              *ngFor="let field of searchOptions.next; let i = index" [attr.data-index]="i"
+              (click)="onSelect(i, field.name); chip.select();">
               <span class="chip-text">{{field.name}}</span></mat-chip>
           </mat-chip-list>
+
         </div>
       </div>
     </div>

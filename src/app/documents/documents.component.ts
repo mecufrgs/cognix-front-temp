@@ -11,12 +11,14 @@ import { MatIconRegistry } from '@angular/material/icon';
 })
 export class DocumentsComponent implements OnInit {
 @Input() document: object;
-
+private thumb: String
   
 
   isLogged: boolean;
   ngOnInit() {
     this.isLogged = true;
+    this.thumb = "http://cognixback:8080/files/" + this.document.id + "/thumbnail";
+
   }
 
 

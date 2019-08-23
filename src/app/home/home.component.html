@@ -1,87 +1,92 @@
-    
+<div class="main-image-div">
+    <div class="inside-image">
+        <div class="image-text editable"> Adicione seus objetos de aprendizagem, busque, compartilhe</div>
 
-    <div class="main-image-div">
-        <div class="inside-image">
-            <div class="image-text editable"> Adicione seus objetos de aprendizagem, busque, compartilhe</div>
-            <div class="search-box center-div">
-                <form >
-                    
-                        <a [routerLink]="['/search']" routerLinkActive="router-link-active" ><button> Pesquisar</button> </a>
-                </form>
-            </div>
+        <div class="search-box center-div">
 
-            <a [routerLink]="['/register']" class="register">FAÇA SEU CADASTRO</a>
+            <span>
 
-            <div>
-                <!-- <div class="center-div">
-                    <mat-chip-list >
-                            <mat-chip class="search-options"> <span class="chip-text">pesquisa avançada</span></mat-chip>
-                            <mat-chip class="search-options"><span class="chip-text">área de conhecimento</span></mat-chip>
-                            <mat-chip class="search-options"><span class="chip-text">tipo de Recurso</span></mat-chip>
-                            <mat-chip class="search-options"><span class="chip-text">idioma</span></mat-chip>
-                    </mat-chip-list>
-                </div>   -->
-            </div>
+                <mat-form-field floatLabel="never" class="search-bar">
+                    <input matInput [(ngModel)]="searchText" name="searchTexts"
+                        placeholder="Pesquisar objetos de aprendizagem">
+
+                </mat-form-field>
+            </span>
+
+            <a style="cursor:pointer" [routerLink]="['/search']" routerLinkActive="router-link-active">
+                <div class="dot">
+
+                    <mat-icon style="color:white; margin-right:0.5em; margin-top:0.2em; font-size: 2em"
+                        aria-hidden="false" aria-label="search">search</mat-icon>
 
 
-        </div> 
-    </div>
+                </div>
+            </a>
 
-    <div *ngIf="isLogged; else unlogged" class="grey-division">
-        <div class="grey-division-text"><strong>SEUS FAVORITOS</strong></div>
-        
-        
-        <div  class="favorites">
-            
-            <mat-grid-list cols=3 rowHeight=1:1.1 gutterSize=2em >
-
-                
-                <mat-grid-tile >
-                    <app-documents></app-documents>
-                </mat-grid-tile>
-                
-                <mat-grid-tile>
-                    <app-documents></app-documents>
-                </mat-grid-tile>
-                
-                <mat-grid-tile>
-                    <app-documents></app-documents>
-                </mat-grid-tile>
-                
-            </mat-grid-list>
-            
         </div>
-        
-        
-        
+
+
+
+        <div> <a [routerLink]="['/register']" class="register">FAÇA SEU CADASTRO</a> </div>
+
+
+
     </div>
-    <ng-template #unlogged>
+</div>
 
-        <div class="grey-division" style="height: 22em">
-            <div class="grey-division-text">SEUS FAVORITOS</div>
-            <div class="grey-division-text-unlogged theme-blue"><strong>Entre</strong> ou <strong>cadastre-se</strong> para começar<br> a criar sua lista de objetos de aprendizagem favoritos!</div>
-    
-        </div>    
-
-    </ng-template>
-    
+<div *ngIf="isLogged; else unlogged" class="grey-division">
+    <div class="grey-division-text"><strong>SEUS FAVORITOS</strong></div>
 
 
-    <div class="grey-division-text"><strong>TODOS</strong></div>
-    
-    
-    <div style="margin-left: 4em; font-size:1.5em; margin-top: 1.5em; width:90%" >
-            <mat-grid-list cols=4 rowHeight=15em>
+    <div class="favorites">
 
-            <mat-grid-tile *ngFor="let document of documents">
-                
-                <app-documents [document]="document"></app-documents>
+        <mat-grid-list cols=3 rowHeight=1:1.1 gutterSize=2em>
+
+
+            <mat-grid-tile>
+                <app-documents></app-documents>
             </mat-grid-tile>
 
+            <mat-grid-tile>
+                <app-documents></app-documents>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <app-documents></app-documents>
+            </mat-grid-tile>
 
         </mat-grid-list>
 
+    </div>
+
+
+
 </div>
-    
+<ng-template #unlogged>
+
+    <div class="grey-division" style="height: 22em">
+        <div class="grey-division-text">SEUS FAVORITOS</div>
+        <div class="grey-division-text-unlogged theme-blue"><strong>Entre</strong> ou <strong>cadastre-se</strong> para
+            começar<br> a criar sua lista de objetos de aprendizagem favoritos!</div>
+
+    </div>
+
+</ng-template>
 
 
+
+<div class="grey-division-text"><strong>TODOS</strong></div>
+
+
+<div style="margin-left: 4em; font-size:1.5em; margin-top: 1.5em; width:90%">
+    <mat-grid-list cols=4 rowHeight=15em>
+
+        <mat-grid-tile *ngFor="let document of documents">
+
+            <app-documents [document]="document"></app-documents>
+        </mat-grid-tile>
+
+
+    </mat-grid-list>
+
+</div>

@@ -21,19 +21,16 @@
 }
 
 .search-bar{
-    width:15em;
-    margin-top: 1em;
-    color:white;
+    width:20em;
+    
 }
 
 .search-box{
-    background-color: #E3E3E3;
+    background-color: #FDFDFD;
     width: 25em;
     height: 3em;
-    line-height: 2em;
     border-radius: 2em;
     font-size: 1.5em;
-    display: block;
     margin-top:1em;
     margin-bottom: 0.5em;
 
@@ -57,7 +54,7 @@
 }
 
 .register{
-    margin-top: 22em;
+    margin-top: 17.5em;
     margin-right: 3em;
     float:right;
     background-color: #FF6F00;
@@ -112,3 +109,40 @@
     display:inline-block;
 }
 
+
+.round {
+    width: 100%;
+    border-radius: 15px;
+    border: 1px #000 solid;
+    padding: 5px 5px 5px 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+}
+
+.corner {
+    position: absolute;
+    top: 3px;
+    left: 5px;
+    height: 20px;
+    width: 20px;
+    z-index: 10;
+    border-radius: 10px;
+    border: none;
+}
+
+.search {
+    position: relative;
+    width: 190px;
+    height: 30px;
+}
+
+
+.dot {
+    float: right;
+    height: 100%;
+    width: 3em;
+    background-color: #FF6F00;
+    border-radius: 50%;
+  }

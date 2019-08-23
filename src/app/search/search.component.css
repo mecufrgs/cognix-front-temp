@@ -1,14 +1,14 @@
 .main-image-div{
     background-image:  url('../../assets/images/degrade.jpg');
     
-    height: 25em;
+    height: 20em;
     
 }
 
 
 .image-text{
     padding-top: 3em;
-    font-size: small;
+    font-size: large;
     color:black;
 }
 
@@ -17,18 +17,15 @@
 }
 
 .search-bar{
-    width:22em;
-    margin-top: 1em;
+    width:20em;
 }
 
 .search-box{
     background-color: #FDFDFD;
     width: 25em;
     height: 3em;
-    line-height: 2em;
     border-radius: 2em;
     font-size: 1.5em;
-    display: block;
     margin-top:1em;
     margin-bottom: 0.5em;
 
@@ -44,20 +41,23 @@
 }
 
 .search-buttons{
-    margin-left:15em;
-    margin-top: 4em;
+    margin-left:18em;
+    margin-top: 1em;
+    
 }
 
 .search-title{
     margin-right: 3em;
+    
 }
 
 .search-options{
     height:1.3em;
+
 }
 
 .chip-text{
-    font-size:0.6em;
+    font-size:1em;
 }
 
 .register{
@@ -102,3 +102,10 @@
     display:inline-block;
 }
 
+.dot {
+    float: right;
+    height: 100%;
+    width: 3em;
+    background-color: #FF6F00;
+    border-radius: 50%;
+  }

@@ -6,6 +6,8 @@ import { RestService } from '../rest.service';
 import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import {Router} from "@angular/router"
 import { parameters } from '../search/searchParameters';
+import {MatStepperModule} from '@angular/material/stepper'; 
+
 @Component({
   selector: 'app-new-document-fast',
   templateUrl: './new-document-fast.component.html',
@@ -35,7 +37,10 @@ export class NewDocumentFastComponent implements OnInit {
         form.append("filename", "thumbnail");
       };
 
-
+      this.uploader2.onBuildItemForm = (item, form) => {
+        form.append("docId", this.OBAA.id);
+        form.append("filename", "file");
+      };
 
 
 
@@ -44,8 +49,8 @@ export class NewDocumentFastComponent implements OnInit {
     
   }
   OBAA: OBAACreator;
-  public uploader: FileUploader = new FileUploader({url: "http://cognixBack:8080/files/uploadFile", itemAlias: 'thumbnail'});
-
+  public uploader: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: 'thumbnail'});
+  public uploader2: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: 'file'});
   ngOnInit() {
 
     this.kind = 
@@ -125,6 +130,10 @@ export class NewDocumentFastComponent implements OnInit {
          console.log('ImageUpload:uploaded:', item, status, response);
      };
 
+     this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
+     this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+          console.log('ImageUpload:uploaded:', item, status, response);
+      };
 
      this.searchOptions = Object.assign({}, parameters);
      this.finalSearch = "área do conhecimento"; 
