@@ -26,12 +26,16 @@ export class NewDocumentFastComponent implements OnInit {
   kind:any;
   target:any;
   age:any;
+  resources:any;
+
+  currentPage: number;
+  progressBarValue: number;
 
   constructor(public rest:RestService, private router:Router) { 
     this.rest.getID().subscribe((data: {}) => {
-      console.log(data)
+      //console.log(data)
       Object.assign(this.OBAA,data);
-      console.log(this.OBAA);
+      //console.log(this.OBAA);
       this.uploader.onBuildItemForm = (item, form) => {
         form.append("docId", this.OBAA.id);
         form.append("filename", "thumbnail");
@@ -52,7 +56,8 @@ export class NewDocumentFastComponent implements OnInit {
   public uploader: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: 'thumbnail'});
   public uploader2: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: 'file'});
   ngOnInit() {
-
+    this.currentPage = 1;
+    this.progressBarValue = 14.2857142857;
     this.kind = 
     [
       { 
@@ -118,21 +123,75 @@ export class NewDocumentFastComponent implements OnInit {
         isValid: false 
       },
       
+
+
     ];
-    console.log(this.kind);
-    console.log("OIII");
+    
+    this.resources = [
+      [ { 
+        name: "Exercício",
+        isValid: false 
+      },
+      { 
+        name: "Tabela",
+        isValid: false 
+      },
+      { 
+        name: "Diagrama",
+        isValid: false 
+      },
+      { 
+        name: "Experimento",
+        isValid: false 
+      }  ],
+      
+      [{ 
+        name: "Simulação",
+        isValid: false 
+      },
+      { 
+        name: "Aula",
+        isValid: false 
+      },
+      { 
+        name: "Figura",
+        isValid: false 
+      },
+      { 
+        name: "Prova",
+        isValid: false 
+      }],
+      
+      [{ 
+        name: "Questionário",
+        isValid: false 
+      },
+      { 
+        name: "Texto narrativo",
+        isValid: false 
+      },
+      { 
+        name: "Gráfico",
+        isValid: false 
+      },
+      { 
+        name: "Enunciado de questão",
+        isValid: false 
+      }]
+      
+    ]
 
 
     this.OBAA = emptyMockOBAACreator;
 
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         console.log('ImageUpload:uploaded:', item, status, response);
+         //console.log('ImageUpload:uploaded:', item, status, response);
      };
 
      this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
      this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-          console.log('ImageUpload:uploaded:', item, status, response);
+         //console.log('ImageUpload:uploaded:', item, status, response);
       };
 
      this.searchOptions = Object.assign({}, parameters);
@@ -211,10 +270,10 @@ export class NewDocumentFastComponent implements OnInit {
     else{
       this.finalSearch += "-"+ selected;
       this.finished = true;
-      console.log(this.depth);
+      //console.log(this.depth);
     }
 
-    console.log(this.finalSearch);
+    //console.log(this.finalSearch);
 
   }
 
@@ -243,6 +302,69 @@ export class NewDocumentFastComponent implements OnInit {
     }
 
 
+  }
+
+  //Pagination starts here
+  page(page: number){
+    this.resetPagesBoldness();
+
+    var currentPageString = "page" + this.currentPage;
+    var currentPageStep = "step" + this.currentPage;
+    document.getElementById(currentPageString).style.fontWeight = "normal";
+    document.getElementById(currentPageStep).style.display = "none";
+
+    
+
+    var newPageString = "page" + page;
+    var newStepString = "step" + page;
+    document.getElementById(newPageString).style.fontWeight = "bold";
+    document.getElementById(newStepString).style.display = "block";
+    
+    this.currentPage = page;
+    this.progressBarValue = 14.2857142857 * page;
+
+
+
+
+  }
+
+  resetPagesBoldness(){
+    for (var i = 1; i <= 7; i++){
+      var pageString = "page" + i;
+      document.getElementById(pageString).style.fontWeight = "normal";
+
+    }
+  }
+
+  nextPage(){
+      console.log(this.currentPage);
+    if (this.currentPage != 7){
+      this.page(this.currentPage + 1);
+    }
+  }
+
+  prevPage(){
+    if (this.currentPage != 1){
+      this.page(this.currentPage - 1);
+    }
+  }
+
+  formatLabel(value:number | null){
+    switch(value){
+      case 1:
+        return "Nula";
+        break;
+      case 2:
+        return "Baixa";
+        break;
+      case 3:
+        return "Média";
+        break;
+      case 4:
+        return "Alta";
+        break;
+    
+      }
   }
 
 

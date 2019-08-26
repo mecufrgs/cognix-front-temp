@@ -11,6 +11,13 @@
     margin-top: 3em;
 }
 
+.pagination{
+    width: 70%;
+    margin: auto auto;
+    margin-top: 3em;
+    text-align: center;
+    font-size: 14px;
+}
 
 
 .search-buttons{
@@ -29,5 +36,19 @@
 
 
 .chip-text{
-    font-size:0.6em;
+    font-size:1em;
 }
+
+.paragraph{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0em;
+}
+
+a {
+    color:black;
+}
+
+.mat-slider-horizontal {
+    width: 20em;
+ }

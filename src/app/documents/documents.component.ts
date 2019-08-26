@@ -10,14 +10,14 @@ import { MatIconRegistry } from '@angular/material/icon';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
-@Input() document: object;
+@Input() document: {id: any};
 private thumb: String
   
 
   isLogged: boolean;
   ngOnInit() {
     this.isLogged = true;
-    this.thumb = "http://cognixback:8080/files/" + this.document.id + "/thumbnail";
+    this.thumb = "http://localhost:8080/files/" + this.document.id + "/thumbnail";
 
   }
 

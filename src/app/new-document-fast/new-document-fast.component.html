@@ -1,8 +1,8 @@
-<mat-progress-bar class="orange-progress" value=14.2857142857></mat-progress-bar>
+<mat-progress-bar id="progress" class="orange-progress" [value]="progressBarValue"></mat-progress-bar>
 
-<div class="center-div">
-  <p>Você pode adicionar  seu objeto através de um link ou de um arquivo em seu computador</p>
-<!--  <mat-form-field style="margin-top: 4em; width:70%">
+<div class="center-div" id="step1">
+  <p>Você pode adicionar seu objeto através de um arquivo em seu computador</p>
+  <!--  <mat-form-field style="margin-top: 4em; width:70%">
       <input matInput  placeholder="Endereço na Web (link)">
   </mat-form-field>
   <p style="text-align: left">Você também pode arrastar o objeto para essa janela</p>
@@ -10,130 +10,255 @@
   <br>
   <button matButton> Próximo</button>
 -->
+  <input type="file" name="photo" id="test" ng2FileSelect [uploader]="uploader" />
+  <br>
+  <!-- <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
+    [disabled]="!uploader.getNotUploadedItems().length">
+    Upload
+  </button> -->
 
 </div>
 
-<div class="center-div-step2">
+<div class="center-div-step2" id="step2" style="display:none">
+  <h1 style="text-align: center;"><strong>Informações gerais</strong></h1> <br><br>
+
   <form>
 
-    <p>Qual é o título?</p>
+    <p class="paragraph">Qual é o título?</p>
     <mat-form-field style="width:50%">
-        <input matInput matInput [(ngModel)]="OBAA.metadata.general.titles[0]" name="title" placeholder="Sua resposta">
+      <input matInput matInput [(ngModel)]="OBAA.metadata.general.titles[0]" name="title" placeholder="Sua resposta">
     </mat-form-field>
-    <br>
-    <p>Qual é o idioma?</p>
+    <br><br>
+    <p class="paragraph">Qual é o idioma?</p>
     <mat-form-field>
       <mat-select [(ngModel)]="OBAA.metadata.general.languages[0]" name="languages" placeholder="Escolher">
         <mat-option value=Português>Português</mat-option>
         <mat-option value=Inglês>Inglês</mat-option>
         <mat-option value=Espanhol>Espanhol</mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> <br><br>
 
-    <p>Como você descreveria este objeto de aprendizado?</p>
+    <p class="paragraph">Como você descreveria este objeto de aprendizado?</p>
     <mat-form-field style="width:50%">
-        <input matInput [(ngModel)]="OBAA.metadata.general.descriptions[0]" name="description" placeholder="Sua resposta">
+      <input matInput [(ngModel)]="OBAA.metadata.general.descriptions[0]" name="description" placeholder="Sua resposta">
     </mat-form-field>
     <br><br>
 
-    <p>Quais palavras-chave você usaria para descrever este objeto?</p>
+    <p class="paragraph">Quais palavras-chave você usaria para descrever este objeto?</p>
     <mat-form-field style="width:50%">
-        <input matInput  [(ngModel)]="OBAA.metadata.general.keywords[0]" name="keyword" placeholder="Sua resposta">
+      <input matInput [(ngModel)]="OBAA.metadata.general.keywords[0]" name="keyword" placeholder="Sua resposta">
     </mat-form-field>
     <br><br>
 
-    <!-- <p>Quais destes tipos de recurso são os mais adequados para definir este objeto de aprendizagem?</p>
-    <mat-form-field style="width:50%">
-        <input matInput  placeholder="Sua resposta">
-    </mat-form-field>
-    <br><br> -->
+    <p class="paragraph">Quais destes tipos de recurso são os mais adequados para definir este objeto de aprendizagem?
+    </p>
+    <br>
+    <table cellpadding="10">
+      <tr *ngFor="let list of resources">
+        <th *ngFor="let item of list">
+          <p style="margin-bottom: 0em;font-weight: normal;">
+            <mat-checkbox (change)="item.isValid = ! item.isValid">{{item.name}}</mat-checkbox>
+          </p>
+        </th>
+      </tr>
+    </table>
 
-    <!-- <p>O usuário pode interagir  com este objeto?</p>
-    <mat-radio-group>
-        <mat-radio-button value="Sim">Sim</mat-radio-button><br>
+    <br><br>
+
+
+    <p class="paragraph">O usuário pode interagir com este objeto?</p> <br>
+    <mat-radio-group id="interactivity">
+      <p class="paragraph" style="font-weight: normal;">
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+      </p>
+      <p class="paragraph" style="font-weight: normal;">
         <mat-radio-button value="Não">Não</mat-radio-button>
+      </p>
     </mat-radio-group>
-    <button matButton> Próximo</button>
-    <br><br> -->
+    <br><br>
 
-
-    <!-- <p>Qual o nível dessa interação?</p>
-    CHECAR VALORES DO SLIDER<br><br> -->
-
-
-    <p>Quais correspondem ao objeto de aprendizagem em questão?</p>
-    <div *ngFor="let item of kind">
-    <mat-checkbox (change)="item.isValid = ! item.isValid">{{item.name}}</mat-checkbox><br>
-  </div>
-
-    <!-- <button matButton> Próximo</button> -->
-
-    <p>Para quem foi feito este objeto de aprendizagem?</p>
-    <div *ngFor="let item of target">
-      <mat-checkbox (change)="item.isValid = ! item.isValid">{{item.name}}</mat-checkbox><br>
-    </div>
-
-    <p>Para qual etapa da educação foi feito este projeto?</p>
-    <div *ngFor="let item of age">
-      <mat-checkbox (change)="item.isValid = ! item.isValid">{{item.name}}</mat-checkbox><br>
-    </div>
-
-    <!-- <button matButton> Próximo</button> -->
-
-    <h5 style="text-align:center">Contribuintes</h5>
-
-    <p>Quem contribuiu para o projeto?</p>
-    <mat-form-field style="width:50%">
-        <input matInput [(ngModel)]="OBAA.metadata.location" name="author" placeholder="Sua resposta">
-    </mat-form-field>
-    <br>
-
-    <p>De que forma?</p>
-    <mat-form-field>
-      <mat-select [(ngModel)]="OBAA.metadata.supportedPlatforms" name="role" placeholder="Escolher">
-        <mat-option value=Aluno>Aluno</mat-option>
-        <mat-option value=Professor>Professor</mat-option>
-        <mat-option value=Gestor>Gestor</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <p>Adicione formato OBAA:</p>
-    
-      <div>
-        <div class="search-buttons">
-          <div style="float:left;" class="search-title search-options">
-            <mat-chip-list>
-              <mat-chip selected class="search-options" (click)="onSelectPrevious()"><span
-                  class="chip-text">{{searchOptions.name}}</span></mat-chip>
-            </mat-chip-list>
-          </div>
-          <div style="float:left;">
-            <mat-chip-list>
-              <mat-chip class="search-options" #chip="matChip" [selectable]=false
-                *ngFor="let field of searchOptions.next; let i = index" [attr.data-index]="i"
-                (click)="onSelect(i, field.name); chip.select();">
-                <span class="chip-text">{{field.name}}</span></mat-chip>
-            </mat-chip-list>
-          </div>
-        </div>
-      </div> <br> <br><br> <br><br> <br>
-    
-    <p>Adicione uma capa para seu objeto:</p>
-    <input type="file" name="photo" id="test" ng2FileSelect [uploader]="uploader" />
-    <br>
-    <button type="button" class="btn btn-success btn-s" 
-      (click)="uploader.uploadAll()" 
-      [disabled]="!uploader.getNotUploadedItems().length" >
-          Upload
-    </button>
-    <br><br><br><br>
-
-    <button matButton (click)="finish()"> Encerrar</button>
-
-
-    
   </form>
 </div>
 
 
+<div class="center-div-step2" id="step3" style="display:none">
+  <h1 style="text-align: center;"><strong>Interatividade</strong></h1> <br><br>
+  <form>
+    <p class="paragraph">Qual o nível dessa interação?</p><br><br>
+    <mat-slider thumbLabel [displayWith]="formatLabel" min="1" max="4" step="1" value="1"></mat-slider>
+    <br><br>
 
+    <p class="paragraph">Quais correspondem ao objeto de aprendizagem em questão?</p> <br>
+    <div *ngFor="let item of kind">
+      <p style="font-weight: normal">
+        <mat-checkbox (change)="item.isValid = ! item.isValid">É {{item.name.toLowerCase()}}</mat-checkbox>
+      </p>
+    </div>
+  </form>
+</div>
+
+<div class="center-div-step2" id="step4" style="display:none">
+  <h1 style="text-align: center;"><strong>Público Alvo</strong></h1> <br><br>
+  <form>
+
+    <p class="paragraph">Para quem foi feito este objeto de aprendizagem?</p> <br>
+    <div *ngFor="let item of target">
+      <p style="font-weight: normal">
+        <mat-checkbox (change)="item.isValid = ! item.isValid">{{item.name}}</mat-checkbox>
+      </p>
+    </div>
+    <br>
+
+    <p class="paragraph">Para qual etapa da educação foi feito este projeto?</p> <br>
+    <div *ngFor="let item of age">
+      <p style="font-weight: normal">
+        <mat-checkbox (change)="item.isValid = ! item.isValid">{{item.name}}</mat-checkbox>
+      </p>
+    </div>
+    <br>
+    <p class="paragraph">Para qual área do conhecimento foi feito esse objeto?</p>
+
+    <div>
+      <div class="search-buttons">
+        <div style="float:left;" class="search-title search-options">
+          <mat-chip-list>
+            <mat-chip selected class="search-options" (click)="onSelectPrevious()"><span
+                class="chip-text">{{searchOptions.name}}</span></mat-chip>
+          </mat-chip-list>
+        </div>
+        <div >
+          <mat-chip-list>
+            <mat-chip class="search-options" #chip="matChip" [selectable]=false
+              *ngFor="let field of searchOptions.next; let i = index" [attr.data-index]="i"
+              (click)="onSelect(i, field.name); chip.select();">
+              <span class="chip-text">{{field.name}}</span></mat-chip>
+          </mat-chip-list>
+        </div>
+      </div>
+    </div> 
+
+
+  </form>
+
+</div>
+
+<div class="center-div-step2" id="step5" style="display:none">
+  <h1 style="text-align: center;"><strong>Direitos</strong></h1> <br><br>
+  <form>
+  <p class="paragraph">Este objeto é gratuito?</p> <br>
+  <mat-radio-group id="free">
+    <p style="font-weight: normal" style="font-weight: normal;">
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+    </p>
+    <p style="font-weight: normal" style="font-weight: normal;">
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </p>
+    <p style="font-weight: normal" style="font-weight: normal;">
+      <mat-radio-button value="Não sei">Não sei</mat-radio-button>
+    </p>
+  </mat-radio-group> <br>
+
+  <p class="paragraph">Se alguém for compartilhar este objeto, precisa citar o autor?</p> <br>
+  <mat-radio-group id="rights">
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+    </p>
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </p>
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Não sei">Não sei</mat-radio-button>
+    </p>
+  </mat-radio-group> <br>
+
+  <p class="paragraph">É permitido que façam adaptações neste objeto?</p> <br>
+  <mat-radio-group id="alterations">
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+    </p>
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Sim mas">Sim, desde que também o compartilhe</mat-radio-button>
+    </p>
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </p>
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Não sei">Não sei</mat-radio-button>
+    </p>
+  </mat-radio-group> <br>
+
+  <p class="paragraph">É permitido que se faça uso comercial deste objeto?</p> <br>
+  <mat-radio-group id="author">
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Sim">Sim</mat-radio-button>
+    </p>
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Não">Não</mat-radio-button>
+    </p>
+    <p  style="font-weight: normal;">
+      <mat-radio-button value="Não sei">Não sei</mat-radio-button>
+    </p>
+  </mat-radio-group> <br>
+
+</form>
+</div>
+
+<div class="center-div-step2" id="step6" style="display:none">
+    <h1 style="text-align: center;"><strong>Contribuintes</strong></h1> <br><br>
+
+  <p class="paragraph">Quem contribuiu para o projeto?</p>
+  <mat-form-field style="width:50%">
+    <input matInput [(ngModel)]="OBAA.metadata.location" name="author" placeholder="Sua resposta">
+  </mat-form-field>
+  <br>
+
+  <p class="paragraph">De que forma?</p>
+  <mat-form-field>
+    <mat-select [(ngModel)]="OBAA.metadata.supportedPlatforms" name="role" placeholder="Escolher">
+      <mat-option value=Aluno>Aluno</mat-option>
+      <mat-option value=Professor>Professor</mat-option>
+      <mat-option value=Gestor>Gestor</mat-option>
+    </mat-select>
+  </mat-form-field> <br>
+
+
+
+  <p class="paragraph">Adicione uma capa para seu objeto:</p>
+  <input type="file" name="photo" id="test" ng2FileSelect [uploader]="uploader" />
+  <br>
+  <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
+    [disabled]="!uploader.getNotUploadedItems().length">
+    Upload
+  </button>
+
+  <button matButton (click)="finish()"> Encerrar</button>
+
+
+
+
+</div>
+
+<div class="center-div-step2" id="step6" style="display:none">
+    <h1 style="text-align: center;"><strong>Resumo</strong></h1> <br><br>
+
+<p style="font-weight:normal">Análise da tarefa - {{simple.name}} </p> <br>
+<p style="font-weight:normal">{{simple.language}}</p><br>
+<p class="paragraph">Público-alvo: {{simple.public}}</p><br>
+<p style="font-weight:normal">Descrição</p><br>
+
+</div>
+
+<div class="pagination" style="margin-top:7em;">
+  <div style="width:70%" class="pagination">
+    <a href="javascript:void(0);" style="font-weight: bold;" (click)="prevPage()">&lt; Anterior</a>
+    <a href="javascript:void(0);" id="page1" style="margin-left: 25%; font-weight: bold;" (click)="page(1)">1</a>
+    <a href="javascript:void(0);" id="page2" style="margin-left: 3%;" (click)="page(2)">2</a>
+    <a href="javascript:void(0);" id="page3" style="margin-left: 3%;" (click)="page(3)">3</a>
+    <a href="javascript:void(0);" id="page4" style="margin-left: 3%;" (click)="page(4)">4</a>
+    <a href="javascript:void(0);" id="page5" style="margin-left: 3%;" (click)="page(5)">5</a>
+    <a href="javascript:void(0);" id="page6" style="margin-left: 3%;" (click)="page(6)">6</a>
+    <a href="javascript:void(0);" id="page7" style="margin-left: 3%;" (click)="page(7)">7</a>
+    <a href="javascript:void(0);" style="margin-left: 25%; font-weight: bold;" (click)="nextPage()"> Próximo &gt;</a>
+  </div>
+
+</div>
