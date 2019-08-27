@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OBAA, OBAACreator } from '../metadata';
 import { emptyMockOBAA, emptyMockOBAACreator } from '../mock-data';
 
-import { RestService } from '../rest.service';
+import { RestService, endpoint } from '../rest.service';
 import {  FileUploader, FileSelectDirective } from 'ng2-file-upload/ng2-file-upload';
 import {Router} from "@angular/router"
 import { parameters } from '../search/searchParameters';
@@ -35,8 +35,8 @@ export class NewDocumentFastComponent implements OnInit {
 
 
   OBAA: OBAACreator;
-  public uploader: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: "thumbnail"});
-  public uploader2: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: 'file'});
+  public uploader: FileUploader = new FileUploader({url: endpoint + "/files/uploadFile", itemAlias: "thumbnail"});
+  public uploader2: FileUploader = new FileUploader({url: endpoint + "/files/uploadFile", itemAlias: 'file'});
   
 
   constructor(public rest:RestService, private router:Router) { 
@@ -51,7 +51,7 @@ export class NewDocumentFastComponent implements OnInit {
 
       this.uploader2.onBuildItemForm = (item, form) => {
         form.append("docId", this.OBAA.id);
-        form.append("filename", "Material de ensino");
+        form.append("filename", "Material");
       };
 
     
@@ -223,23 +223,15 @@ export class NewDocumentFastComponent implements OnInit {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         this.uploader2.uploadAll();
+      
+      this.uploader2.uploadAll();
      };
 
      
 
      this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-        this.rest.addDocument(JSON.stringify(this.OBAA), this.OBAA.id).subscribe((data: {}) => {
-        console.log(data);
-        
-  
-        this.simple.id = this.OBAA.id;
-        this.rest.addDocumentSOLR(JSON.stringify([this.simple])).subscribe((data: {}) => {
-          console.log(data);
-          this.router.navigate(['/']);
-        });
-  
-      });
+      
+      this.router.navigate(['/']);
       };
 
      this.searchOptions = Object.assign({}, parameters);
@@ -266,7 +258,18 @@ export class NewDocumentFastComponent implements OnInit {
 
     this.OBAA.isVersion = "1";
 
-    this.uploader.uploadAll();
+    
+    this.rest.addDocument(JSON.stringify(this.OBAA), this.OBAA.id).subscribe((data: {}) => {
+      console.log(data);
+      
+
+      this.simple.id = this.OBAA.id;
+      this.rest.addDocumentSOLR(JSON.stringify([this.simple])).subscribe((data: {}) => {
+        console.log(data);
+        this.uploader.uploadAll();
+      });
+
+    });
 
 
 

@@ -3,7 +3,7 @@ import { Metadata, Contribuinte } from '../metadata';
 import { Mock, contrib } from '../mock-data';
 import {DomSanitizer} from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
-
+import { endpoint } from '../rest.service';
 @Component({
   selector: 'app-documents',
   templateUrl: './documents.component.html',
@@ -17,7 +17,7 @@ private thumb: String
   isLogged: boolean;
   ngOnInit() {
     this.isLogged = true;
-    this.thumb = "http://localhost:8080/files/" + this.document.id + "/thumbnail";
+    this.thumb = endpoint  + "/files/" + this.document.id + "/thumbnail";
 
   }
 

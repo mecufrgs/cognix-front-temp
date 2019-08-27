@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Metadata, OBAA } from '../metadata';
 import { Mock, emptyMockOBAA } from '../mock-data';
-import { RestService } from '../rest.service';
+import { RestService, endpoint } from '../rest.service';
 import { ActivatedRoute } from "@angular/router";
 import {DomSanitizer} from '@angular/platform-browser';
 
@@ -21,6 +21,7 @@ export class InfoMetadadosComponent implements OnInit {
   simple:any;
   simples:any;
 
+  thumb: string;
   
 
 
@@ -28,6 +29,7 @@ export class InfoMetadadosComponent implements OnInit {
 
 
   ngOnInit() {
+    
     this.simple = {
       name:"",
       accessibilitylanguage:"",
@@ -63,6 +65,7 @@ export class InfoMetadadosComponent implements OnInit {
     
     this.rest.getDocumentFromID(this.id).subscribe((data: {}) => {
       Object.assign(this.info,data);
+      this.thumb = endpoint  + "/files/" + this.id + "/thumbnail";
     });
 
     var finalString = "q=id:\""+ this.id + "\"";
@@ -119,7 +122,7 @@ export class InfoMetadadosComponent implements OnInit {
   }
 
   sanitize(){
-    return this.sanitizer.bypassSecurityTrustUrl('http://localhost:8080/files/'+ this.id);
+    return this.sanitizer.bypassSecurityTrustUrl(endpoint + '8080/files/'+ this.id);
 }
 
 }
