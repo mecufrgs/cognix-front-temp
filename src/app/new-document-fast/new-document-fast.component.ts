@@ -230,11 +230,7 @@ export class NewDocumentFastComponent implements OnInit {
      
 
      this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-<<<<<<< HEAD
-
-=======
       
->>>>>>> master
       this.router.navigate(['/']);
       };
 
