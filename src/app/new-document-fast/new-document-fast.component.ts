@@ -28,8 +28,16 @@ export class NewDocumentFastComponent implements OnInit {
   age:any;
   resources:any;
 
+  simple: any;
+
   currentPage: number;
   progressBarValue: number;
+
+
+  OBAA: OBAACreator;
+  public uploader: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: "thumbnail"});
+  public uploader2: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: 'file'});
+  
 
   constructor(public rest:RestService, private router:Router) { 
     this.rest.getID().subscribe((data: {}) => {
@@ -43,21 +51,49 @@ export class NewDocumentFastComponent implements OnInit {
 
       this.uploader2.onBuildItemForm = (item, form) => {
         form.append("docId", this.OBAA.id);
-        form.append("filename", "file");
+        form.append("filename", "Material de ensino");
       };
 
+    
 
-
-      //Todo: make "end" button disappear before the observable completes
     });
     
+    this.simple = {
+      name:"",
+      language:"",
+      public: "",
+      description:"",
+      accessibility:"",
+      context: "",
+      education:"",
+      area:"",
+      interaction:"",
+      interactionNumber:"",
+      dificulty:"",
+      rights:"",
+      author:[{
+        name: "",
+        role:"",
+      }],
+      keywords:"",
+      interactive:"",
+      licence:"",
+      kind: [],
+      target: [],
+      age: [],
+      resources: [],
+      bncc: "",
+      owner:"admin",
+      favorites:"",
+      id:0
+    };
   }
-  OBAA: OBAACreator;
-  public uploader: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: 'thumbnail'});
-  public uploader2: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: 'file'});
+
+
   ngOnInit() {
+    console.log(this.simple);
     this.currentPage = 1;
-    this.progressBarValue = 14.2857142857;
+    this.progressBarValue = 100/7;
     this.kind = 
     [
       { 
@@ -185,13 +221,25 @@ export class NewDocumentFastComponent implements OnInit {
     this.OBAA = emptyMockOBAACreator;
 
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
+    this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         //console.log('ImageUpload:uploaded:', item, status, response);
+         this.uploader2.uploadAll();
      };
 
-     this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
+     
+
      this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-         //console.log('ImageUpload:uploaded:', item, status, response);
+        this.rest.addDocument(JSON.stringify(this.OBAA), this.OBAA.id).subscribe((data: {}) => {
+        console.log(data);
+        
+  
+        this.simple.id = this.OBAA.id;
+        this.rest.addDocumentSOLR(JSON.stringify([this.simple])).subscribe((data: {}) => {
+          console.log(data);
+          this.router.navigate(['/']);
+        });
+  
+      });
       };
 
      this.searchOptions = Object.assign({}, parameters);
@@ -204,45 +252,24 @@ export class NewDocumentFastComponent implements OnInit {
 
   finish(){
     console.log(this.kind);
-    for(var i = 0; i < this.kind.length; i++){
-      if(this.kind[i].isValid){
-        this.OBAA.metadata.general.coverages.push(this.kind[i].name);
-      }
-    }
 
-    for(var i = 0; i < this.target.length; i++){
-      if(this.target[i].isValid){
-        this.OBAA.metadata.technical.formats.push(this.target[i].name);
-      }
-    }
-
-    for(var i = 0; i < this.age.length; i++){
-      if(this.age[i].isValid){
-        this.OBAA.metadata.technical.supportedPlatforms.push(this.age[i].name);
-      }
-    }
+    this.OBAA.metadata.general.titles[0] = this.simple.name;
+    this.OBAA.metadata.general.descriptions[0] = this.simple.description;
+    this.OBAA.metadata.general.keywords[0] = this.simple.keywords;
+    this.OBAA.metadata.general.titles[0] = this.simple.name;
+    this.updateSimple;
 
     console.log( "BEFORE");
-    this.OBAA.metadata.general.keywords.push(this.finalSearch);
     console.log(this.OBAA);
+    console.log(this.simple);
 
-    var simple = [{
-      id:this.OBAA.id,
-      keywords:this.OBAA.metadata.general.keywords,
-      title:this.OBAA.metadata.general.titles[0],
-    }];
 
     this.OBAA.isVersion = "1";
-    this.rest.addDocument(JSON.stringify(this.OBAA), this.OBAA.id).subscribe((data: {}) => {
-      console.log(data);
-      this.router.navigate(['/']);
-    });
+
+    this.uploader.uploadAll();
 
 
-    this.rest.addDocumentSOLR(JSON.stringify(simple)).subscribe((data: {}) => {
-      console.log(data);
-      this.router.navigate(['/']);
-    });
+
     
   }
 
@@ -321,10 +348,12 @@ export class NewDocumentFastComponent implements OnInit {
     document.getElementById(newStepString).style.display = "block";
     
     this.currentPage = page;
-    this.progressBarValue = 14.2857142857 * page;
+    this.progressBarValue = (100/7) * page;
 
+    if(page == 7)
+      this.updateSimple();
 
-
+    window.scrollTo(0,0);
 
   }
 
@@ -365,6 +394,62 @@ export class NewDocumentFastComponent implements OnInit {
         break;
     
       }
+  }
+
+  updateSimple(){
+
+    this.simple.kind = [];
+    this.simple.target = [];
+    this.simple.resources = [];
+    this.simple.age = [];
+
+    for(var i = 0; i < this.kind.length; i++){
+      if(this.kind[i].isValid){
+        this.OBAA.metadata.general.coverages.push(this.kind[i].name);
+        this.simple.kind.push(this.kind[i].name);
+
+      }
+    }
+
+    for(var i = 0; i < this.target.length; i++){
+      if(this.target[i].isValid){
+        this.OBAA.metadata.technical.formats.push(this.target[i].name);
+        this.simple.target.push(this.target[i].name);
+      }
+    }
+
+    for(var i = 0; i < this.age.length; i++){
+      if(this.age[i].isValid){
+        this.OBAA.metadata.technical.supportedPlatforms.push(this.age[i].name);
+        this.simple.age.push(this.age[i].name);
+      }
+    }
+
+    for(var i = 0; i < this.resources.length; i++){
+      for(var recIndex = 0; recIndex < this.resources[i].length; recIndex++){
+        if(this.resources[i][recIndex].isValid){
+          this.simple.resources.push(this.resources[i][recIndex].name);
+        }
+      }
+    }
+
+    this.simple.interaction = this.formatLabel(this.simple.interactionNumber);
+    this.simple.bncc = this.finalSearch;
+    console.log(this.simple);
+  }
+
+  addAuthor(){
+    var aut = {
+      name:"",
+      role:"",
+    };
+
+    this.simple.author.push(aut);
+
+  }
+
+  removeAuthor(){
+    this.simple.author.pop();
   }
 
 

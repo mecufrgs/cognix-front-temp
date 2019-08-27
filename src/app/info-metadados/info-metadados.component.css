@@ -2,3 +2,15 @@
     width:50%;
     margin: auto auto;
 }
+
+.paragraph{
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0em;
+}
+
+.center-div-step2{
+    width: 65%;
+    margin: auto auto;
+    margin-top: 3em;
+}

@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchText="";
     this.searchOptions = Object.assign({}, parameters);
     this.finalSearch = "área do conhecimento"; 
     this.finished = false;
@@ -39,8 +40,6 @@ export class SearchComponent implements OnInit {
     this.finalparam = selected;
 
     if(this.searchOptions.next[index].hasOwnProperty("next")){
-
-
 
       this.finalSearch += "-" + selected;
       this.searchOptions = this.searchOptions.next[index];
@@ -91,7 +90,8 @@ export class SearchComponent implements OnInit {
   search(){
     console.log(this.searchText);
 
-    var finalString = "q=title:\""+ this.searchText + "\" AND keywords:\"" + this.finalSearch + "\"";
+    var finalString = "q=name:\""+ this.searchText + "\"+AND+bncc:\"" + this.finalSearch + "\"";
+    
     this.rest.querySOLR(finalString).subscribe((data: any) => {
       this.documents = data.response.docs;
       console.log(this.documents);

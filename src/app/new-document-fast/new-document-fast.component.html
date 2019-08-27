@@ -10,12 +10,9 @@
   <br>
   <button matButton> Próximo</button>
 -->
-  <input type="file" name="photo" id="test" ng2FileSelect [uploader]="uploader" />
+  <input style="height: 30px" type="file" name="file" id="uploadFile" ng2FileSelect [uploader]="uploader2" />
   <br>
-  <!-- <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
-    [disabled]="!uploader.getNotUploadedItems().length">
-    Upload
-  </button> -->
+
 
 </div>
 
@@ -26,12 +23,12 @@
 
     <p class="paragraph">Qual é o título?</p>
     <mat-form-field style="width:50%">
-      <input matInput matInput [(ngModel)]="OBAA.metadata.general.titles[0]" name="title" placeholder="Sua resposta">
+      <input matInput matInput [(ngModel)]="simple.name" name="title" placeholder="Sua resposta">
     </mat-form-field>
     <br><br>
     <p class="paragraph">Qual é o idioma?</p>
     <mat-form-field>
-      <mat-select [(ngModel)]="OBAA.metadata.general.languages[0]" name="languages" placeholder="Escolher">
+      <mat-select [(ngModel)]="simple.language" name="languages" placeholder="Escolher">
         <mat-option value=Português>Português</mat-option>
         <mat-option value=Inglês>Inglês</mat-option>
         <mat-option value=Espanhol>Espanhol</mat-option>
@@ -40,13 +37,13 @@
 
     <p class="paragraph">Como você descreveria este objeto de aprendizado?</p>
     <mat-form-field style="width:50%">
-      <input matInput [(ngModel)]="OBAA.metadata.general.descriptions[0]" name="description" placeholder="Sua resposta">
+      <input matInput [(ngModel)]="simple.description" name="description" placeholder="Sua resposta">
     </mat-form-field>
     <br><br>
 
     <p class="paragraph">Quais palavras-chave você usaria para descrever este objeto?</p>
     <mat-form-field style="width:50%">
-      <input matInput [(ngModel)]="OBAA.metadata.general.keywords[0]" name="keyword" placeholder="Sua resposta">
+      <input matInput [(ngModel)]="simple.keywords" name="keyword" placeholder="Sua resposta">
     </mat-form-field>
     <br><br>
 
@@ -67,7 +64,7 @@
 
 
     <p class="paragraph">O usuário pode interagir com este objeto?</p> <br>
-    <mat-radio-group id="interactivity">
+    <mat-radio-group [(ngModel)]="this.interactive" name="interactive" id="interactive">
       <p class="paragraph" style="font-weight: normal;">
         <mat-radio-button value="Sim">Sim</mat-radio-button>
       </p>
@@ -85,7 +82,8 @@
   <h1 style="text-align: center;"><strong>Interatividade</strong></h1> <br><br>
   <form>
     <p class="paragraph">Qual o nível dessa interação?</p><br><br>
-    <mat-slider thumbLabel [displayWith]="formatLabel" min="1" max="4" step="1" value="1"></mat-slider>
+    <mat-slider thumbLabel [(ngModel)]="simple.interactionNumber" name="interactivityNumber" [displayWith]="formatLabel"
+      min="1" max="4" step="1" value="1"></mat-slider>
     <br><br>
 
     <p class="paragraph">Quais correspondem ao objeto de aprendizagem em questão?</p> <br>
@@ -126,7 +124,7 @@
                 class="chip-text">{{searchOptions.name}}</span></mat-chip>
           </mat-chip-list>
         </div>
-        <div >
+        <div>
           <mat-chip-list>
             <mat-chip class="search-options" #chip="matChip" [selectable]=false
               *ngFor="let field of searchOptions.next; let i = index" [attr.data-index]="i"
@@ -135,7 +133,7 @@
           </mat-chip-list>
         </div>
       </div>
-    </div> 
+    </div>
 
 
   </form>
@@ -145,110 +143,125 @@
 <div class="center-div-step2" id="step5" style="display:none">
   <h1 style="text-align: center;"><strong>Direitos</strong></h1> <br><br>
   <form>
-  <p class="paragraph">Este objeto é gratuito?</p> <br>
-  <mat-radio-group id="free">
-    <p style="font-weight: normal" style="font-weight: normal;">
-      <mat-radio-button value="Sim">Sim</mat-radio-button>
-    </p>
-    <p style="font-weight: normal" style="font-weight: normal;">
-      <mat-radio-button value="Não">Não</mat-radio-button>
-    </p>
-    <p style="font-weight: normal" style="font-weight: normal;">
-      <mat-radio-button value="Não sei">Não sei</mat-radio-button>
-    </p>
-  </mat-radio-group> <br>
+    <p class="paragraph">Este objeto é gratuito?</p> <br>
+    <mat-radio-group id="free">
+      <p style="font-weight: normal" style="font-weight: normal;">
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+      </p>
+      <p style="font-weight: normal" style="font-weight: normal;">
+        <mat-radio-button value="Não">Não</mat-radio-button>
+      </p>
+      <p style="font-weight: normal" style="font-weight: normal;">
+        <mat-radio-button value="Não sei">Não sei</mat-radio-button>
+      </p>
+    </mat-radio-group> <br>
 
-  <p class="paragraph">Se alguém for compartilhar este objeto, precisa citar o autor?</p> <br>
-  <mat-radio-group id="rights">
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Sim">Sim</mat-radio-button>
-    </p>
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Não">Não</mat-radio-button>
-    </p>
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Não sei">Não sei</mat-radio-button>
-    </p>
-  </mat-radio-group> <br>
+    <p class="paragraph">Se alguém for compartilhar este objeto, precisa citar o autor?</p> <br>
+    <mat-radio-group id="rights">
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+      </p>
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Não">Não</mat-radio-button>
+      </p>
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Não sei">Não sei</mat-radio-button>
+      </p>
+    </mat-radio-group> <br>
 
-  <p class="paragraph">É permitido que façam adaptações neste objeto?</p> <br>
-  <mat-radio-group id="alterations">
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Sim">Sim</mat-radio-button>
-    </p>
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Sim mas">Sim, desde que também o compartilhe</mat-radio-button>
-    </p>
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Não">Não</mat-radio-button>
-    </p>
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Não sei">Não sei</mat-radio-button>
-    </p>
-  </mat-radio-group> <br>
+    <p class="paragraph">Qual a licença?</p>
+    <mat-form-field style="width:50%">
+      <input matInput [(ngModel)]="simple.licence" name="licence" placeholder="Sua resposta">
+    </mat-form-field> <br>
 
-  <p class="paragraph">É permitido que se faça uso comercial deste objeto?</p> <br>
-  <mat-radio-group id="author">
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Sim">Sim</mat-radio-button>
-    </p>
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Não">Não</mat-radio-button>
-    </p>
-    <p  style="font-weight: normal;">
-      <mat-radio-button value="Não sei">Não sei</mat-radio-button>
-    </p>
-  </mat-radio-group> <br>
+    <p class="paragraph">É permitido que façam adaptações neste objeto?</p> <br>
+    <mat-radio-group id="alterations">
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+      </p>
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Sim mas">Sim, desde que também o compartilhe</mat-radio-button>
+      </p>
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Não">Não</mat-radio-button>
+      </p>
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Não sei">Não sei</mat-radio-button>
+      </p>
+    </mat-radio-group> <br>
 
-</form>
+    <p class="paragraph">É permitido que se faça uso comercial deste objeto?</p> <br>
+    <mat-radio-group id="comercialUse">
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Sim">Sim</mat-radio-button>
+      </p>
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Não">Não</mat-radio-button>
+      </p>
+      <p style="font-weight: normal;">
+        <mat-radio-button value="Não sei">Não sei</mat-radio-button>
+      </p>
+    </mat-radio-group> <br>
+
+  </form>
 </div>
-
 <div class="center-div-step2" id="step6" style="display:none">
-    <h1 style="text-align: center;"><strong>Contribuintes</strong></h1> <br><br>
+  <h1 style="text-align: center;"><strong>Contribuintes</strong></h1> <br><br>
 
-  <p class="paragraph">Quem contribuiu para o projeto?</p>
-  <mat-form-field style="width:50%">
-    <input matInput [(ngModel)]="OBAA.metadata.location" name="author" placeholder="Sua resposta">
-  </mat-form-field>
+  <p class="paragraph">Quem contribuiu para o projeto?</p><br>
+  <div *ngFor="let author of simple.author">
+
+    <p class="paragraph">Nome:</p>
+    <mat-form-field style="width:50%">
+      <input matInput [(ngModel)]="author.name" name="author" placeholder="Sua resposta">
+    </mat-form-field>
+    <br>
+
+    <p class="paragraph">De que forma?</p>
+    <mat-form-field>
+      <mat-select [(ngModel)]="author.role" name="role" placeholder="Escolher">
+        <mat-option value=Aluno>Aluno</mat-option>
+        <mat-option value=Professor>Professor</mat-option>
+        <mat-option value=Gestor>Gestor</mat-option>
+      </mat-select>
+    </mat-form-field> <br><br>
+
+  </div>
+  <button mat-raised-button (click)="addAuthor()">Adicionar outro contribuinte</button>
+  <button style="margin-left:30px" mat-raised-button (click)="removeAuthor()">Remover contribuinte</button>
+  <br><br><br><br>
+
+  <p class="paragraph">Adicione uma capa para seu objeto:</p><br>
+  <input style="height: 30px" type="file" name="photo" id="test" ng2FileSelect [uploader]="uploader" />
   <br>
 
-  <p class="paragraph">De que forma?</p>
-  <mat-form-field>
-    <mat-select [(ngModel)]="OBAA.metadata.supportedPlatforms" name="role" placeholder="Escolher">
-      <mat-option value=Aluno>Aluno</mat-option>
-      <mat-option value=Professor>Professor</mat-option>
-      <mat-option value=Gestor>Gestor</mat-option>
-    </mat-select>
-  </mat-form-field> <br>
-
-
-
-  <p class="paragraph">Adicione uma capa para seu objeto:</p>
-  <input type="file" name="photo" id="test" ng2FileSelect [uploader]="uploader" />
-  <br>
-  <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()"
-    [disabled]="!uploader.getNotUploadedItems().length">
-    Upload
-  </button>
-
-  <button matButton (click)="finish()"> Encerrar</button>
-
 
 
 
 </div>
 
-<div class="center-div-step2" id="step6" style="display:none">
-    <h1 style="text-align: center;"><strong>Resumo</strong></h1> <br><br>
+<div class="center-div-step2" id="step7" style="display:none">
+  <h1 style="text-align: center;"><strong>Resumo</strong></h1> <br><br>
 
-<p style="font-weight:normal">Análise da tarefa - {{simple.name}} </p> <br>
-<p style="font-weight:normal">{{simple.language}}</p><br>
-<p class="paragraph">Público-alvo: {{simple.public}}</p><br>
-<p style="font-weight:normal">Descrição</p><br>
+  <p class="paragraph">Análise da tarefa - {{simple.name}} </p><br>
+  <p class="paragraph">Idioma: <span style="font-weight:normal">{{simple.language}}</span></p><br>
+  <p class="paragraph">Descrição:</p>
+  <p style="font-weight:normal">{{simple.description}}</p>
+  <p class="paragraph">Etapa da educação:
+    <span *ngFor="let public of simple.age" style="font-weight:normal"> {{public}};</span></p><br>
+  <p class="paragraph">Nível de interação: <span style="font-weight:normal">{{simple.interaction}}</span></p><br>
+  <p class="paragraph">Direitos: <span style="font-weight:normal">{{simple.licence}}</span></p><br>
+  <p class="paragraph">Contribuintes:
+    <div  *ngFor="let author of simple.author" style="margin-left:13px; font-weight:normal">{{author.name}} - {{author.role}}</div><br>
+
+    <div style="text-align: center">
+      <button (click)="finish()" mat-raised-button color="primary">Encerrar</button>
+    </div>
+
 
 </div>
 
-<div class="pagination" style="margin-top:7em;">
+<div class="pagination" style="margin-top:4em;">
   <div style="width:70%" class="pagination">
     <a href="javascript:void(0);" style="font-weight: bold;" (click)="prevPage()">&lt; Anterior</a>
     <a href="javascript:void(0);" id="page1" style="margin-left: 25%; font-weight: bold;" (click)="page(1)">1</a>
