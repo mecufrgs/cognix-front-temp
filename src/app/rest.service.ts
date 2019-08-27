@@ -4,8 +4,8 @@ import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
 
 
-const endpoint = 'http://localhost:8080';
-const endpointSOLR = 'http://localhost:8983';
+const endpoint = 'http://143.54.85.106:8080';
+const endpointSOLR = 'http://143.54.85.106:8983';
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'

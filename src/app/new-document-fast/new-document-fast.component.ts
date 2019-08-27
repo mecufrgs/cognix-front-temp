@@ -35,8 +35,8 @@ export class NewDocumentFastComponent implements OnInit {
 
 
   OBAA: OBAACreator;
-  public uploader: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: "thumbnail"});
-  public uploader2: FileUploader = new FileUploader({url: "http://localhost:8080/files/uploadFile", itemAlias: 'file'});
+  public uploader: FileUploader = new FileUploader({url: "http://143.54.85.106:8080/files/uploadFile", itemAlias: "thumbnail"});
+  public uploader2: FileUploader = new FileUploader({url: "http://143.54.85.106:8080/files/uploadFile", itemAlias: 'file'});
   
 
   constructor(public rest:RestService, private router:Router) { 
@@ -229,17 +229,8 @@ export class NewDocumentFastComponent implements OnInit {
      
 
      this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-        this.rest.addDocument(JSON.stringify(this.OBAA), this.OBAA.id).subscribe((data: {}) => {
-        console.log(data);
-        
-  
-        this.simple.id = this.OBAA.id;
-        this.rest.addDocumentSOLR(JSON.stringify([this.simple])).subscribe((data: {}) => {
-          console.log(data);
-          this.router.navigate(['/']);
-        });
-  
-      });
+
+      this.router.navigate(['/']);
       };
 
      this.searchOptions = Object.assign({}, parameters);
@@ -266,7 +257,18 @@ export class NewDocumentFastComponent implements OnInit {
 
     this.OBAA.isVersion = "1";
 
-    this.uploader.uploadAll();
+    
+    this.rest.addDocument(JSON.stringify(this.OBAA), this.OBAA.id).subscribe((data: {}) => {
+      console.log(data);
+      
+
+      this.simple.id = this.OBAA.id;
+      this.rest.addDocumentSOLR(JSON.stringify([this.simple])).subscribe((data: {}) => {
+        console.log(data);
+        this.uploader.uploadAll();
+      });
+
+    });
 
 
 

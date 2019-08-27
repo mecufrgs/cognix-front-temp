@@ -17,7 +17,7 @@ private thumb: String
   isLogged: boolean;
   ngOnInit() {
     this.isLogged = true;
-    this.thumb = "http://localhost:8080/files/" + this.document.id + "/thumbnail";
+    this.thumb = "http://143.54.85.106:8080/files/" + this.document.id + "/thumbnail";
 
   }
 

@@ -119,7 +119,7 @@ export class InfoMetadadosComponent implements OnInit {
   }
 
   sanitize(){
-    return this.sanitizer.bypassSecurityTrustUrl('http://localhost:8080/files/'+ this.id);
+    return this.sanitizer.bypassSecurityTrustUrl('http://143.54.85.106:8080/files/'+ this.id);
 }
 
 }
