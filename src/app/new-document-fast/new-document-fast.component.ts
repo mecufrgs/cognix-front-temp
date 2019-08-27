@@ -264,7 +264,7 @@ export class NewDocumentFastComponent implements OnInit {
       
 
       this.simple.id = this.OBAA.id;
-      this.rest.addDocumentSOLR(JSON.stringify([this.simple])).subscribe((data: {}) => {
+      this.rest.addDocumentSOLR(([this.simple])).subscribe((data: {}) => {
         console.log(data);
         this.uploader.uploadAll();
       });
