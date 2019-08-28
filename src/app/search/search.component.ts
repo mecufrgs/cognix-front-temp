@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   finished:boolean;
   depth:number;
   path:number[];
-  searchText:any;
+  searchText = "";
   initSearch= "";
 
   documents = [];
@@ -25,8 +25,9 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.initSearch = this.route.snapshot.paramMap.get('search');
-   
-    this.searchText=this.initSearch;
+    if(this.initSearch != null)
+      this.searchText=this.initSearch;
+      
     this.searchOptions = Object.assign({}, parameters);
     this.finalSearch = "área do conhecimento"; 
     this.finished = false;
