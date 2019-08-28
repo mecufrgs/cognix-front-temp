@@ -33,6 +33,9 @@ const routes: Routes = [
     path: 'search',
     component: SearchComponent
   },{
+    path: 'search/:search',
+    component: SearchComponent
+  },{
     path: '**',
     component: LoggedComponent
   },

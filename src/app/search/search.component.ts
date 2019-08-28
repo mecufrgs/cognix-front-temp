@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { parameters } from './searchParameters'
-import { RestService } from '../rest.service'
+import { RestService } from '../rest.service';
+import { ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -14,20 +15,27 @@ export class SearchComponent implements OnInit {
   depth:number;
   path:number[];
   searchText:any;
+  initSearch= "";
 
-  private documents: object;
+  documents = [];
 
-  constructor(public rest:RestService) { 
+  constructor(private route: ActivatedRoute, public rest:RestService) { 
 
   }
 
   ngOnInit() {
-    this.searchText="";
+    this.initSearch = this.route.snapshot.paramMap.get('search');
+   
+    this.searchText=this.initSearch;
     this.searchOptions = Object.assign({}, parameters);
     this.finalSearch = "área do conhecimento"; 
     this.finished = false;
     this.depth = 0;
     this.path = [];
+    if(this.initSearch != ""){
+      this.search();
+      
+    }
     
   }
 
@@ -89,11 +97,16 @@ export class SearchComponent implements OnInit {
 
   search(){
     console.log(this.searchText);
+    this.documents = [];
 
     var finalString = "q=name:\""+ this.searchText + "\"+AND+bncc:\"" + this.finalSearch + "\"";
-    
     this.rest.querySOLR(finalString).subscribe((data: any) => {
-      this.documents = data.response.docs;
+      var rec = data.response.docs;
+      console.log(rec);
+      for (var x in rec){
+        console.log(x);
+        this.documents.push({id:rec[x].id, title:rec[x].name[0]});
+      }
       console.log(this.documents);
     });
 

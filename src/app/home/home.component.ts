@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
     private Login: LoginService;
     private isLogged: boolean;
     private documents: object;
-
+    searchText = "";
   ngOnInit() {
 
   // To do - Make call to back end
