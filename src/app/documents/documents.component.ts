@@ -10,7 +10,7 @@ import { endpoint } from '../rest.service';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
-@Input() document: {id: any};
+@Input() document: {id: any, title:any};
 private thumb: String
   
 

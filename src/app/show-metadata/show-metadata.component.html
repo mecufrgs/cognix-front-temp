@@ -2,6 +2,7 @@
 
     <p class="paragraph">Idioma: <span style="font-weight:normal">{{simple.language}}</span></p><br>
     <p class="paragraph">Descrição:<span style="font-weight:normal">{{simple.description}}</span></p><br>
+    <p class="paragraph">Palavras-chave: <span style="font-weight:normal">{{simple.keywords}}</span></p><br>
     <p class="paragraph">Etapa da educação:
         <span *ngFor="let public of simple.age" style="font-weight:normal"> {{public}};</span></p><br>
     <p class="paragraph">Tipos de recurso:
@@ -10,6 +11,7 @@
         <span *ngFor="let public of simple.kind" style="font-weight:normal"> {{public}};</span></p><br>
     <p class="paragraph">Público alvo:
         <span *ngFor="let public of simple.target" style="font-weight:normal"> {{public}};</span></p><br>
+    <p class="paragraph">BNCC: <span style="font-weight:normal">{{simple.bncc}}</span></p><br>
     <p class="paragraph">Nível de interação: <span style="font-weight:normal">{{simple.interaction}}</span></p><br>
     <p class="paragraph">É gratuito? - <span style="font-weight:normal">{{simple.free}}</span></p><br>
     <p class="paragraph">É necessário citar autor? - <span style="font-weight:normal">{{simple.citeAuthor}}</span></p><br>
