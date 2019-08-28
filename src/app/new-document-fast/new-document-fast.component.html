@@ -2,15 +2,8 @@
 
 <div class="center-div" id="step1">
   <p>Você pode adicionar seu objeto através de um arquivo em seu computador</p>
-  <!--  <mat-form-field style="margin-top: 4em; width:70%">
-      <input matInput  placeholder="Endereço na Web (link)">
-  </mat-form-field>
-  <p style="text-align: left">Você também pode arrastar o objeto para essa janela</p>
 
-  <br>
-  <button matButton> Próximo</button>
--->
-  <input style="height: 30px" type="file" name="file" id="uploadFile" ng2FileSelect [uploader]="uploader2" />
+  <input style="height: 30px" type="file" name="file" id="uploadFile" (click)="uploader2.clearQueue()" ng2FileSelect [uploader]="uploader2" />
   <br>
 
 
@@ -232,7 +225,7 @@
   <br><br><br><br>
 
   <p class="paragraph">Adicione uma capa para seu objeto:</p><br>
-  <input style="height: 30px" type="file" name="photo" id="test" ng2FileSelect [uploader]="uploader" />
+  <input style="height: 30px" type="file" name="photo" id="photoUpload" (click)="uploader.clearQueue()" ng2FileSelect [uploader]="uploader" />
   <br>
 
   
@@ -248,9 +241,14 @@
     <button (click)="finish()" mat-raised-button color="primary">Encerrar</button>
 
 
-  </div> 
-  <div id="incomplete" style="text-align: center;display:none;"><br><br>
+  </div> <br><br>
+  <div id="incomplete" style="text-align: center;display:none;">
     <p style="color:red">O QUESTIONÁRIO AINDA NÃO ESTÁ TOTALMENTE COMPLETO</p>
+
+
+  </div>
+  <div id="uploadEmpty" style="text-align: center;display:none;">
+    <p style="color:red">NENHUM ARQUIVO FOI SELECIONADO PARA O ENVIO</p>
 
 
   </div>

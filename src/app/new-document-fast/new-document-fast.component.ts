@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OBAA, OBAACreator } from '../metadata';
 import { emptyMockOBAA, emptyMockOBAACreator } from '../mock-data';
 
@@ -224,15 +224,19 @@ export class NewDocumentFastComponent implements OnInit {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader2.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      
-      this.uploader2.uploadAll();
+      document.body.style.cursor="initial";
+      this.router.navigate(['/']);
      };
 
      
 
      this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      document.body.style.cursor="initial";
-      this.router.navigate(['/']);
+      if(this.uploader.queue.length > 0)
+        this.uploader.uploadAll();
+      else {
+        this.router.navigate(['/']);
+        document.body.style.cursor="initial";
+        }
       };
 
      this.searchOptions = Object.assign({}, parameters);
@@ -244,6 +248,8 @@ export class NewDocumentFastComponent implements OnInit {
   }
 
   finish(){
+    
+
     for (var propt in this.simple){
       if (Object.prototype.hasOwnProperty.call(this.simple, propt)) {
           if(this.simple[propt] == "" && !(propt == "id" || propt == "kind" || propt == "age" || propt == "target" || propt == "resources")){
@@ -281,7 +287,8 @@ export class NewDocumentFastComponent implements OnInit {
       this.rest.addDocumentSOLR(JSON.stringify([this.simple])).subscribe((data: {}) => {
         console.log(data);
         
-        this.uploader.uploadAll();
+
+        this.uploader2.uploadAll();
       });
 
     });
@@ -415,8 +422,6 @@ export class NewDocumentFastComponent implements OnInit {
   }
 
   updateSimple(){
-
-
     this.simple.kind = [];
     this.simple.target = [];
     this.simple.resources = [];
@@ -452,23 +457,12 @@ export class NewDocumentFastComponent implements OnInit {
       }
     }
 
+    
     this.simple.interaction = this.formatLabel(this.simple.interactionNumber);
     this.simple.bncc = this.finalSearch;
-    console.log(this.simple);
+    
+    this.check();
 
-    for (var propt in this.simple){
-      if (Object.prototype.hasOwnProperty.call(this.simple, propt)) {
-          console.log(propt);
-          if(this.simple[propt] == "" && !(propt == "id" || propt == "kind" || propt == "age" || propt == "target" || propt == "resources")){
-            document.getElementById("incomplete").style.display="block";
-            console.log("OI");
-            console.log(propt);
-            return;
-          }
-      }
-    }
-    console.log("complete");
-    document.getElementById("incomplete").style.display="none";
     
   }
 
@@ -488,6 +482,33 @@ export class NewDocumentFastComponent implements OnInit {
 
     this.simple.author.pop();
   }
+
+  check(){
+    var complete = false;
+    for (var propt in this.simple){
+      if (Object.prototype.hasOwnProperty.call(this.simple, propt)) {
+          if(this.simple[propt] == "" && !(propt == "id" || propt == "kind" || propt == "age" || propt == "target" || propt == "resources")){
+            document.getElementById("incomplete").style.display="block";
+            complete = true;
+            console.log(propt);
+          }
+      }
+    }
+
+    if(!complete)
+      document.getElementById("incomplete").style.display="none";
+    
+    if(this.uploader2.queue.length == 0){
+      document.getElementById("uploadEmpty").style.display="block";
+      return;
+    }
+
+    document.getElementById("uploadEmpty").style.display="none";
+
+    
+
+  }
+  
 
 
 }
