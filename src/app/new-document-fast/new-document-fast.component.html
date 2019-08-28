@@ -64,7 +64,7 @@
 
 
     <p class="paragraph">O usuário pode interagir com este objeto?</p> <br>
-    <mat-radio-group [(ngModel)]="this.interactive" name="interactive" id="interactive">
+    <mat-radio-group [(ngModel)]="simple.interactive" name="interactive" id="interactive">
       <p class="paragraph" style="font-weight: normal;">
         <mat-radio-button value="Sim">Sim</mat-radio-button>
       </p>
@@ -144,7 +144,7 @@
   <h1 style="text-align: center;"><strong>Direitos</strong></h1> <br><br>
   <form>
     <p class="paragraph">Este objeto é gratuito?</p> <br>
-    <mat-radio-group id="free">
+    <mat-radio-group [(ngModel)]="simple.free" name="free" id="free">
       <p style="font-weight: normal" style="font-weight: normal;">
         <mat-radio-button value="Sim">Sim</mat-radio-button>
       </p>
@@ -157,7 +157,7 @@
     </mat-radio-group> <br>
 
     <p class="paragraph">Se alguém for compartilhar este objeto, precisa citar o autor?</p> <br>
-    <mat-radio-group id="rights">
+    <mat-radio-group [(ngModel)]="simple.citeAuthor" name="citeAuthor" id="rights">
       <p style="font-weight: normal;">
         <mat-radio-button value="Sim">Sim</mat-radio-button>
       </p>
@@ -175,12 +175,12 @@
     </mat-form-field> <br>
 
     <p class="paragraph">É permitido que façam adaptações neste objeto?</p> <br>
-    <mat-radio-group id="alterations">
+    <mat-radio-group [(ngModel)]="simple.alterations" name="alterations" id="alterations">
       <p style="font-weight: normal;">
         <mat-radio-button value="Sim">Sim</mat-radio-button>
       </p>
       <p style="font-weight: normal;">
-        <mat-radio-button value="Sim mas">Sim, desde que também o compartilhe</mat-radio-button>
+        <mat-radio-button value="Sim, desde que também o compartilhe">Sim, desde que também o compartilhe</mat-radio-button>
       </p>
       <p style="font-weight: normal;">
         <mat-radio-button value="Não">Não</mat-radio-button>
@@ -191,7 +191,7 @@
     </mat-radio-group> <br>
 
     <p class="paragraph">É permitido que se faça uso comercial deste objeto?</p> <br>
-    <mat-radio-group id="comercialUse">
+    <mat-radio-group [(ngModel)]="simple.comercialUse" name="comercialUse" id="comercialUse">
       <p style="font-weight: normal;">
         <mat-radio-button value="Sim">Sim</mat-radio-button>
       </p>
@@ -235,29 +235,25 @@
   <input style="height: 30px" type="file" name="photo" id="test" ng2FileSelect [uploader]="uploader" />
   <br>
 
-
+  
 
 
 </div>
 
 <div class="center-div-step2" id="step7" style="display:none">
-  <h1 style="text-align: center;"><strong>Resumo</strong></h1> <br><br>
+  <h1 style="text-align: center;"><strong>Resumo - {{simple.name}}</strong></h1> <br><br>
 
-  <p class="paragraph">Análise da tarefa - {{simple.name}} </p><br>
-  <p class="paragraph">Idioma: <span style="font-weight:normal">{{simple.language}}</span></p><br>
-  <p class="paragraph">Descrição:</p>
-  <p style="font-weight:normal">{{simple.description}}</p>
-  <p class="paragraph">Etapa da educação:
-    <span *ngFor="let public of simple.age" style="font-weight:normal"> {{public}};</span></p><br>
-  <p class="paragraph">Nível de interação: <span style="font-weight:normal">{{simple.interaction}}</span></p><br>
-  <p class="paragraph">Direitos: <span style="font-weight:normal">{{simple.licence}}</span></p><br>
-  <p class="paragraph">Contribuintes:
-    <div  *ngFor="let author of simple.author" style="margin-left:13px; font-weight:normal">{{author.name}} - {{author.role}}</div><br>
+  <app-show-metadata [simple]="simple"></app-show-metadata>
+  <div style="text-align: center">
+    <button (click)="finish()" mat-raised-button color="primary">Encerrar</button>
 
-    <div style="text-align: center">
-      <button (click)="finish()" mat-raised-button color="primary">Encerrar</button>
-    </div>
 
+  </div> 
+  <div id="incomplete" style="text-align: center;display:none;"><br><br>
+    <p style="color:red">O QUESTIONÁRIO AINDA NÃO ESTÁ TOTALMENTE COMPLETO</p>
+
+
+  </div>
 
 </div>
 

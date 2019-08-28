@@ -61,21 +61,14 @@ export class NewDocumentFastComponent implements OnInit {
     this.simple = {
       name:"",
       language:"",
-      public: "",
+      keywords:"",
       description:"",
-      accessibility:"",
-      context: "",
-      education:"",
-      area:"",
       interaction:"",
       interactionNumber:"",
-      dificulty:"",
-      rights:"",
       author:[{
         name: "",
         role:"",
       }],
-      keywords:"",
       interactive:"",
       licence:"",
       kind: [],
@@ -84,7 +77,15 @@ export class NewDocumentFastComponent implements OnInit {
       resources: [],
       bncc: "",
       owner:"admin",
-      favorites:"",
+      favorites:"admin",
+      free:"",
+      citeAuthor:"",
+      alterations:"",
+      comercialUse:"",
+
+
+
+
       id:0
     };
   }
@@ -230,7 +231,7 @@ export class NewDocumentFastComponent implements OnInit {
      
 
      this.uploader2.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-      
+      document.body.style.cursor="initial";
       this.router.navigate(['/']);
       };
 
@@ -243,6 +244,15 @@ export class NewDocumentFastComponent implements OnInit {
   }
 
   finish(){
+    for (var propt in this.simple){
+      if (Object.prototype.hasOwnProperty.call(this.simple, propt)) {
+          if(this.simple[propt] == "" && !(propt == "id" || propt == "kind" || propt == "age" || propt == "target" || propt == "resources")){
+            
+            return;
+          }
+      }
+    }
+
     document.body.style.cursor="wait";
     console.log(this.kind);
 
@@ -251,7 +261,9 @@ export class NewDocumentFastComponent implements OnInit {
     this.OBAA.metadata.general.keywords[0] = this.simple.keywords;
     this.OBAA.metadata.general.titles[0] = this.simple.name;
     this.updateSimple;
+    this.addAuthor();
 
+    console.log(this.simple.author);
     console.log( "BEFORE");
     console.log(this.OBAA);
     console.log(this.simple);
@@ -265,6 +277,7 @@ export class NewDocumentFastComponent implements OnInit {
       
 
       this.simple.id = this.OBAA.id;
+      console.log(this.simple);
       this.rest.addDocumentSOLR(JSON.stringify([this.simple])).subscribe((data: {}) => {
         console.log(data);
         
@@ -403,6 +416,7 @@ export class NewDocumentFastComponent implements OnInit {
 
   updateSimple(){
 
+
     this.simple.kind = [];
     this.simple.target = [];
     this.simple.resources = [];
@@ -441,6 +455,21 @@ export class NewDocumentFastComponent implements OnInit {
     this.simple.interaction = this.formatLabel(this.simple.interactionNumber);
     this.simple.bncc = this.finalSearch;
     console.log(this.simple);
+
+    for (var propt in this.simple){
+      if (Object.prototype.hasOwnProperty.call(this.simple, propt)) {
+          console.log(propt);
+          if(this.simple[propt] == "" && !(propt == "id" || propt == "kind" || propt == "age" || propt == "target" || propt == "resources")){
+            document.getElementById("incomplete").style.display="block";
+            console.log("OI");
+            console.log(propt);
+            return;
+          }
+      }
+    }
+    console.log("complete");
+    document.getElementById("incomplete").style.display="none";
+    
   }
 
   addAuthor(){
@@ -450,6 +479,8 @@ export class NewDocumentFastComponent implements OnInit {
     };
 
     this.simple.author.push(aut);
+
+
 
   }
 

@@ -37,6 +37,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { FileSelectDirective } from 'ng2-file-upload';
 import { SearchComponent } from './search/search.component';
+import { ShowMetadataComponent } from './show-metadata/show-metadata.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { SearchComponent } from './search/search.component';
     ProfileComponent,
     NewDocumentFastComponent,
     FileSelectDirective,
-    SearchComponent    
+    SearchComponent,
+    ShowMetadataComponent    
   ],
   imports: [
     BrowserModule,

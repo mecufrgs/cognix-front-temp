@@ -99,10 +99,14 @@ export class InfoMetadadosComponent implements OnInit {
         resources: this.documents[0].resources,
         bncc: this.documents[0].bncc[0],
         owner:this.documents[0].owner[0],
+        free:this.documents[0].free[0],
+        citeAuthor:this.documents[0].citeAuthor[0],
+        alterations:this.documents[0].alterations[0],
+        comercialUse:this.documents[0].comercialUse[0]
         //favorites:this.documents[0].favorites[0],
       }
       console.log(this.simple);
-      for(var i = 0; i < this.simple.authors.length; i++){
+      for(var i = 0; i < this.simple.authors.length -1; i++){
           var x = this.simple.authors[i];
           var y = x.split(",")
           var z = y[0].split("=")[1];
