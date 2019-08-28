@@ -485,14 +485,8 @@ export class NewDocumentFastComponent implements OnInit {
   }
 
   removeAuthor(){
-    var aut = {
-      name:"",
-      role:"",
-    };
 
     this.simple.author.pop();
-    this.simple.author.pop();
-    this.simple.author.push(aut);
   }
 
 
