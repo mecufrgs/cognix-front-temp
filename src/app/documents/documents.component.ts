@@ -10,15 +10,16 @@ import { endpoint } from '../rest.service';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
-@Input() document: {id: any, title:any};
+@Input() document: {id: any, title:string};
 private thumb: String
-  
+
 
   isLogged: boolean;
   ngOnInit() {
     this.isLogged = true;
     this.thumb = endpoint  + "/files/" + this.document.id + "/thumbnail";
-
+    if(this.document.title.length > 27)
+      this.document.title = this.document.title.substr(0,23) + "..."
   }
 
 
