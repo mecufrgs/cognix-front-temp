@@ -243,6 +243,7 @@ export class NewDocumentFastComponent implements OnInit {
   }
 
   finish(){
+    document.body.style.cursor="wait";
     console.log(this.kind);
 
     this.OBAA.metadata.general.titles[0] = this.simple.name;
@@ -264,8 +265,9 @@ export class NewDocumentFastComponent implements OnInit {
       
 
       this.simple.id = this.OBAA.id;
-      this.rest.addDocumentSOLR(([this.simple])).subscribe((data: {}) => {
+      this.rest.addDocumentSOLR(JSON.stringify([this.simple])).subscribe((data: {}) => {
         console.log(data);
+        
         this.uploader.uploadAll();
       });
 
