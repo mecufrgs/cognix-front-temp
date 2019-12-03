@@ -9,6 +9,7 @@ import { RegisterComponent } from '../register/register.component';
 import { ProfileComponent } from '../profile/profile.component';
 import { NewDocumentFastComponent } from '../new-document-fast/new-document-fast.component';
 import { SearchComponent } from '../search/search.component';
+import { LoginComponent } from '../login/login.component';
 
 const routes: Routes = [
   {
@@ -35,9 +36,14 @@ const routes: Routes = [
   },{
     path: 'search/:search',
     component: SearchComponent
-  },{
-    path: '**',
-    component: LoggedComponent
+  },
+  // {
+  //   path: '**',
+  //   component: LoggedComponent
+  // },
+  {
+    path: 'singin',
+    component: LoginComponent
   },
 ];
 @NgModule({
