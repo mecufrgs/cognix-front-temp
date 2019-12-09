@@ -11,7 +11,7 @@ import { RestService } from '../rest.service';
 export class HomeComponent implements OnInit {
 
   constructor(public rest:RestService) { 
-    this.isLogged = false;
+    this.isLogged = rest.logged;
     
   }
     private Login: LoginService;
@@ -21,8 +21,6 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
 
   // To do - Make call to back end
-    this.isLogged = false;
-
     this.rest.getDocument().subscribe((data: {}) => {
       this.documents = data;
       console.log(this.documents);

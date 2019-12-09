@@ -16,6 +16,7 @@ const httpOptions = {
 })
 
 export class RestService {
+  logged: boolean = false;
 
   constructor(private http: HttpClient) { }
 
@@ -105,7 +106,7 @@ export class RestService {
             localStorage.setItem('token', body.token);
             // let tokenInfo = JSON.parse(atob(body.token.match(/\..*\./)[0].replace(/\./g, '')));
             // localStorage.setItem('token_expiration', tokenInfo.exp);
-
+            this.logged = true
             return true
           } 
         }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from 'src/app/rest.service';
 
 @Component({
   selector: 'app-header',
@@ -7,10 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   isLogged: boolean;
-  constructor() { }
+  constructor(public rest : RestService) { }
 
   ngOnInit() {
-    this.isLogged = false;
+    this.isLogged = this.rest.logged;
   }
 
 }
