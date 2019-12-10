@@ -7,11 +7,17 @@ import { RestService } from 'src/app/rest.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isLogged: boolean;
-  constructor(public rest : RestService) { }
+  isLogged: boolean
+  userEmail: string
+  constructor(private rest: RestService) { }
 
   ngOnInit() {
-    this.isLogged = this.rest.logged;
+      this.rest.logged.subscribe(logged => this.isLogged = logged)
+      this.rest.email.subscribe(email => this.userEmail = email)
+  }
+
+  logoutUser(){
+    this.rest.logged.emit(false)
   }
 
 }

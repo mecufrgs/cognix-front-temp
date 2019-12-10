@@ -40,6 +40,7 @@ import { SearchComponent } from './search/search.component';
 import { ShowMetadataComponent } from './show-metadata/show-metadata.component';
 import { LoginComponent } from './login/login.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -68,6 +69,7 @@ import { LoginComponent } from './login/login.component';
     MatPaginatorModule,
     HttpClientModule,
     ReactiveFormsModule, 
+    
     
   ],
   providers: [LoginService],

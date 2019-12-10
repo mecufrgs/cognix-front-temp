@@ -11,7 +11,7 @@ import { RestService } from '../rest.service';
 export class HomeComponent implements OnInit {
 
   constructor(public rest:RestService) { 
-    this.isLogged = rest.logged;
+
     
   }
     private Login: LoginService;

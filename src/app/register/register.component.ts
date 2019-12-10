@@ -27,16 +27,15 @@ export class RegisterComponent implements OnInit {
         if (this.signUpForm.valid) {
             let seq = this.restApi.postSignup(this.signUpForm.value);
 
-            seq.subscribe((token) => {
-                if (token == true) {
+            seq.subscribe((response) => {
+                console.log(response)
+                if (response == true) {
                     alert("Usuario criado com sucesso")
                     this.router.navigate(['/']);
+                }else if (response=='e'){
+                    alert("Erro ao cadastrar usuario.");
                 }
-            },err => {
-                alert("Erro ao cadastrar usuario");
-                console.error('ERROR', err);
-          
-              });
+            });
         }
 
     }

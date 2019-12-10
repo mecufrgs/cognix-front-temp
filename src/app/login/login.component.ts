@@ -28,10 +28,13 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       let seq = this.restApi.postLogin(this.loginForm.value);
 
-      seq.subscribe((token) => {
-          if (token == true) {
+      seq.subscribe((response) => {
+        console.log(response)
+          if (response == 'ok') {
               alert("Logado com sucesso")
-              this.router.navigate(['/']);
+              this.router.navigate(['']);
+          }else if (response == undefined){
+            alert("Erro ao realizar login");
           }
       },err => {
           alert("Erro ao cadastrar usuario");

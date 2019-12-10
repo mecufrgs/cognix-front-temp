@@ -1,7 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable, of, Subject } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+
+
 
 export const endpoint = 'http://localhost:8080';
 export const endpointSOLR = 'http://localhost:8983';
@@ -16,7 +18,9 @@ const httpOptions = {
 })
 
 export class RestService {
-  logged: boolean = false;
+
+  @Output() logged : EventEmitter<any> = new EventEmitter();
+  @Output() email : EventEmitter<any> = new EventEmitter();
 
   constructor(private http: HttpClient) { }
 
@@ -99,16 +103,19 @@ export class RestService {
   }
 
   postLogin(body: any) {
+    let emailField = body.username
+
     return this.http.post<AuthData>(endpoint + '/login', body)
       .pipe(
         map((body) => {
-          if (body.token != undefined) {
+          if (body.error == undefined) {
             localStorage.setItem('token', body.token);
-            // let tokenInfo = JSON.parse(atob(body.token.match(/\..*\./)[0].replace(/\./g, '')));
-            // localStorage.setItem('token_expiration', tokenInfo.exp);
-            this.logged = true
-            return true
-          } 
+             let tokenInfo = JSON.parse(atob(body.token.match(/\..*\./)[0].replace(/\./g, '')));
+             localStorage.setItem('token_expiration', tokenInfo.exp);
+            this.email.emit(emailField)
+            this.logged.emit(true)
+            return 'ok'
+          }
         }
 
         ),
@@ -120,20 +127,24 @@ export class RestService {
   }
 
   postSignup(body: any) {
+    let emailField = body.username
+
     return this.http.post<AuthData>(endpoint + '/signup', JSON.stringify(body), httpOptions)
       .pipe(
         map((body) => {
           if (body.token != undefined) {
            localStorage.setItem('token', body.token);
-            // let tokenInfo = JSON.parse(atob(body.token.match(/\..*\./)[0].replace(/\./g, '')));
-            // localStorage.setItem('token_expiration', tokenInfo.exp);
+            let tokenInfo = JSON.parse(atob(body.token.match(/\..*\./)[0].replace(/\./g, '')));
+            localStorage.setItem('token_expiration', tokenInfo.exp);
+            this.email.emit(emailField)
+            this.logged.emit(true)
            return true
           } 
         }
         ),
         catchError((err: HttpErrorResponse) => {
           console.log(err);
-          return this.handleError2(err);
+          return 'e'
         })
       );
   }
@@ -145,7 +156,7 @@ export class RestService {
       console.error(error.error);
     }
 
-    return (error.error.message);
+    return (error.error.error);
   }
   // public getToken(): Promise<string> {
   //   return this.storage.get('token');
@@ -164,4 +175,5 @@ export class RestService {
 
 export interface AuthData {
   token: string;
+  error: string;
 }
