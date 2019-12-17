@@ -11,7 +11,7 @@ import { PanelComponent } from './panel/panel.component';
 import { DocumentsComponent } from './documents/documents.component';
 import { NewDocumentComponent } from './new-document/new-document.component';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {MatProgressBarModule} from '@angular/material/progress-bar'; 
 import {MatPaginatorModule} from '@angular/material/paginator';
 
@@ -38,6 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FileSelectDirective } from 'ng2-file-upload';
 import { SearchComponent } from './search/search.component';
 import { ShowMetadataComponent } from './show-metadata/show-metadata.component';
+import { LoginComponent } from './login/login.component';
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ import { ShowMetadataComponent } from './show-metadata/show-metadata.component';
     NewDocumentFastComponent,
     FileSelectDirective,
     SearchComponent,
-    ShowMetadataComponent    
+    ShowMetadataComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -65,6 +68,8 @@ import { ShowMetadataComponent } from './show-metadata/show-metadata.component';
     MatSelectModule, MatRadioModule, MatSliderModule, MatCardModule, MatChipsModule, MatIconModule, RouterModule, MatProgressBarModule,
     MatPaginatorModule,
     HttpClientModule,
+    ReactiveFormsModule, 
+    
     
   ],
   providers: [LoginService],

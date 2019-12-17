@@ -16,12 +16,13 @@
 }
 
 .center-div{
-    width:50%;
+    position: relative;
     margin:auto;
+    text-align: center;
+
 }
 
 .orange-button{
-    float:right;
     text-align: center;
     width: 5em;
     border-radius: 3em;

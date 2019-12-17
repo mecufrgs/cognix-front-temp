@@ -1,0 +1,22 @@
+<div class="grey-division">
+  <div class="grey-division-text"><strong>Login</strong></div>
+</div>
+
+<div class="center-div">
+  <form fxFlex [formGroup]="loginForm">
+
+    <mat-form-field class="input-size">
+      <input formControlName='username' matInput placeholder="E-mail">
+    </mat-form-field><br><br>
+    <mat-form-field class="input-size">
+      <input formControlName='password' matInput placeholder="Senha">
+    </mat-form-field><br><br>
+
+  </form>
+  <div class="orange-button">
+    <button class="orange-button" mat-raised-button (click)="doLogin()">Entrar</button>
+  </div>
+  
+  <p><li> Não tem uma conta?<a class = "orange-letter" routerLink = "/register">Faça seu cadastro</a></li> </p>
+
+</div>

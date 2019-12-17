@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RestService } from 'src/app/rest.service';
 
 @Component({
   selector: 'app-header',
@@ -6,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-  isLogged: boolean;
-  constructor() { }
+  isLogged: boolean
+  userEmail: string
+  constructor(private rest: RestService) { }
 
   ngOnInit() {
-    this.isLogged = false;
+      this.rest.logged.subscribe(logged => this.isLogged = logged)
+      this.rest.email.subscribe(email => this.userEmail = email)
+  }
+
+  logoutUser(){
+    this.rest.logged.emit(false)
   }
 
 }
